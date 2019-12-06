@@ -56,16 +56,14 @@ public class DrawOnTexture : MonoBehaviour
 		}
 	}
 
-	public void DoAction()
+	public void DoAction(Vector2 targetPosition)
 	{
 		if (isSaving)
 			return;
 
-		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition + toolCurrentOffset);
-		toolObject.transform.position = pos;
 
 		RaycastHit hit;
-		if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition + toolAffectOffset), out hit))
+		if (!Physics.Raycast(Camera.main.ScreenPointToRay(targetPosition), out hit))
 			return;
 
 		Renderer rend = hit.collider.GetComponent<Renderer>();

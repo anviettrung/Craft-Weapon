@@ -14,10 +14,7 @@ public class CraftStateManager : MonoBehaviour
 		public AnimationClip startAnimName;
 		public AnimationClip endingAnimName;
 
-		public GameObject tool;
-		public Vector3 toolFirstPosition;
-		public Vector3 toolFirstTouchOffset;
-		public Vector3 toolAffectOffset;
+		public Tool tool;
 
 		public int totalPix;
 		public int initWPix;
@@ -100,7 +97,24 @@ public class CraftStateManager : MonoBehaviour
 			if (!isLockInput && Input.GetMouseButtonDown(0))
 				isChangingState = false;
 		} else if (Input.GetMouseButton(0)) {
-			drawer.DoAction();
+			UpdateTool(true);
+			drawer.DoAction(states[currentStateIndex].tool.GetAffectPosition(Input.mousePosition));
+		} else {
+			UpdateTool(false);
+		}
+	}
+
+	void UpdateTool(bool isOn)
+	{
+		if (states[currentStateIndex].tool == null)
+			return;
+
+		states[currentStateIndex].tool.UpdatePosition(Input.mousePosition);
+
+		if (isOn) {
+			states[currentStateIndex].tool.SetEffectActive(true);
+		} else {
+			states[currentStateIndex].tool.SetEffectActive(false);
 		}
 	}
 
@@ -112,12 +126,16 @@ public class CraftStateManager : MonoBehaviour
 		isLockInput = true;
 		isChangingState = true;
 
+		states[currentStateIndex].tool.gameObject.SetActive(false);
+
 		if (!firstChange)
 			yield return StartCoroutine(states[currentStateIndex].OnEnd());
 
 		currentStateIndex = nextStateIndex;
 
 		yield return StartCoroutine(states[nextStateIndex].OnStart());
+
+		states[currentStateIndex].tool.gameObject.SetActive(true);
 
 		GetComponent<Renderer>().material = states[nextStateIndex].mat;
 
