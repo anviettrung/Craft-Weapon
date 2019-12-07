@@ -27,7 +27,7 @@ public class Tool : MonoBehaviour
 		return touchInputPosition + toolToTouchOffset + affectAreaToToolOffset;
 	}
 
-	public void SetEffectActive(bool isEnable)
+	public virtual void SetEffectActive(bool isEnable)
 	{
 		if (isEnable) {
 			particleController.PlayParticleEffect();
