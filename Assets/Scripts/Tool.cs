@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tool : MonoBehaviour
 {
 	public ParticleController particleController;
-	public Vector3 initPosition;
+	public Transform initTransform;
 	public Vector3 firstTouchOffset;
 	public Vector3 toolToTouchOffset;
 	public Vector3 affectAreaToToolOffset;
@@ -14,6 +14,11 @@ public class Tool : MonoBehaviour
 	private void Awake()
 	{
 		particleController = GetComponent<ParticleController>();
+	}
+
+	protected void OnEnable()
+	{
+		transform.position = initTransform.position;
 	}
 
 	public void UpdatePosition(Vector3 touchInputPosition)
