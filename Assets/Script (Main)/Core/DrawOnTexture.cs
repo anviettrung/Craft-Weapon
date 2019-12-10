@@ -5,39 +5,38 @@ using UnityEngine.Events;
 
 public class DrawOnTexture : MonoBehaviour
 {
-	public GameObject toolObject;
+	// Brush Info
 	public Texture2D brushTexture;
 	public float brushScale = 1;
-	protected int brushWidth;
-	protected int brushHeight;
-	public string affectedTextureName = "_MainTex";
 
-	public Vector3 toolAffectOffset;
-	public Vector3 toolFirstTouchOffset;
-	public Vector3 toolCurrentOffset;
-	public Vector2Int drawPosition;
+	protected int brushWidth;  // Get from brush texture
+	protected int brushHeight; // Get from brush texture
+
+	protected Color[] brushPixels;
+
+	// Affected Texture
+	public Texture2D dynammicMaskTexture;
+
+	public string affectedTextureName = "_MainTex";
+	protected Texture2D affectedTexture;
+
+	protected Color[] colors;
+
+	// Event - Signal
 	public UnityEvent OnSavingTexture = new UnityEvent();
 
-	public Renderer renderer;
-	protected Texture2D affectedTexture;
-	public Texture2D dynammicMaskTexture;
-	protected Color[] colors;
-	protected Color[] brushPixels;
-	protected bool isSaving = false;
-	public bool canReceiveInput = true;
+
+	// Control script flow
+	public Vector2Int drawPosition;
+	public bool isSaving = false;
+
+	// Ref
+	protected Renderer renderer;
 
 	private void Awake()
 	{
 		renderer = GetComponent<Renderer>();
 		Init();
-	}
-
-	public void UpdateMask()
-	{
-		affectedTexture = (Texture2D)renderer.sharedMaterial.GetTexture(affectedTextureName);
-		dynammicMaskTexture = Instantiate(affectedTexture) as Texture2D;
-
-		renderer.material.SetTexture(affectedTextureName, dynammicMaskTexture);
 	}
 
 	public void Init()
@@ -54,6 +53,14 @@ public class DrawOnTexture : MonoBehaviour
 				brushPixels[y * brushWidth + x] = brushTexture.GetPixel(x, y);
 			}
 		}
+	}
+
+	public void UpdateMask()
+	{
+		affectedTexture = (Texture2D)renderer.sharedMaterial.GetTexture(affectedTextureName);
+		dynammicMaskTexture = Instantiate(affectedTexture) as Texture2D;
+
+		renderer.material.SetTexture(affectedTextureName, dynammicMaskTexture);
 	}
 
 	public void DoAction(Vector2 targetPosition)

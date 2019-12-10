@@ -63,9 +63,6 @@ public class CraftStateManager : MonoBehaviour
 	public DrawOnTexture drawer;
 	public Animator anim;
 
-	// UI
-	public Text statusTextUI;
-
 	// Init data
 	public List<State> states;
 	public float targetProcess;
@@ -176,8 +173,9 @@ public class CraftStateManager : MonoBehaviour
 		int x = currentStateIndex;
 		process = (float)(currWpix - states[x].initWPix) / (float)(states[x].initBPix);
 
-		statusTextUI.text = "State " + (currentStateIndex + 1)
-					+ "\nProcess: " + (int)(process * 100) + "%";
+		UIManager.Instance.SetLabel_Level(currentStateIndex + 1);
+		UIManager.Instance.SetLabel_Process(Mathf.RoundToInt(
+			Mathf.Clamp(process / targetProcess * 100, 0.0f, 100.0f)));
 	}
 
 }
