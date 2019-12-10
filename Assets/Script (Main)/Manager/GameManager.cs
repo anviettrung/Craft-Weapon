@@ -15,6 +15,11 @@ public class GameManager : Singleton<GameManager>
 			OnPreload();
 	}
 
+	private void OnLevelWasLoaded(int level)
+	{
+		curSceneName = UnityEngine.SceneManagement.SceneManager.GetSceneAt(level).name;
+	}
+
 	public void OnPreload()
 	{
 		ChangeScene(gameplaySceneName);
@@ -23,10 +28,12 @@ public class GameManager : Singleton<GameManager>
 	public void ChangeScene(int x)
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene(x);
+		curSceneName = UnityEngine.SceneManagement.SceneManager.GetSceneAt(x).name;
 	}
 
 	public void ChangeScene(string sceneName)
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+		curSceneName = sceneName;
 	}
 }

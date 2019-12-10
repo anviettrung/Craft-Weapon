@@ -77,7 +77,7 @@ public class CraftStateManager : MonoBehaviour
 	[SerializeField]
 	protected float process;
 	protected int currWpix;
-	protected int currentStateIndex = 0;
+	protected int curStateID = 0;
 	public bool isLockInput = false;
 	public bool isChangingState = false;
 	public bool isWon = false;
@@ -90,7 +90,7 @@ public class CraftStateManager : MonoBehaviour
 			states[i].anim = anim;
 		}
 
-		StartCoroutine(ChangeState(currentStateIndex, true));
+		StartCoroutine(ChangeState(curStateID, true));
 	}
 
 	protected void Update()
@@ -100,7 +100,7 @@ public class CraftStateManager : MonoBehaviour
 				isChangingState = false;
 		} else if (Input.GetMouseButton(0)) {
 			UpdateTool(true);
-			drawer.DoAction(states[currentStateIndex].tool.GetAffectPosition(Input.mousePosition));
+			drawer.DoAction(states[curStateID].tool.GetAffectPosition(Input.mousePosition));
 		} else {
 			UpdateTool(false);
 		}
@@ -108,15 +108,15 @@ public class CraftStateManager : MonoBehaviour
 
 	void UpdateTool(bool isOn)
 	{
-		if (states[currentStateIndex].tool == null)
+		if (states[curStateID].tool == null)
 			return;
 
-		states[currentStateIndex].tool.UpdatePosition(Input.mousePosition);
+		states[curStateID].tool.UpdatePosition(Input.mousePosition);
 
 		if (isOn) {
-			states[currentStateIndex].tool.SetEffectActive(true);
+			states[curStateID].tool.SetEffectActive(true);
 		} else {
-			states[currentStateIndex].tool.SetEffectActive(false);
+			states[curStateID].tool.SetEffectActive(false);
 		}
 	}
 
@@ -128,16 +128,16 @@ public class CraftStateManager : MonoBehaviour
 		isLockInput = true;
 		isChangingState = true;
 
-		states[currentStateIndex].tool.gameObject.SetActive(false);
+		states[curStateID].tool.gameObject.SetActive(false);
 
 		if (!firstChange)
-			yield return StartCoroutine(states[currentStateIndex].OnEnd());
+			yield return StartCoroutine(states[curStateID].OnEnd());
 
-		currentStateIndex = nextStateIndex;
+		curStateID = nextStateIndex;
 
 		yield return StartCoroutine(states[nextStateIndex].OnStart());
 
-		states[currentStateIndex].tool.gameObject.SetActive(true);
+		states[curStateID].tool.gameObject.SetActive(true);
 
 		GetComponent<Renderer>().material = states[nextStateIndex].mat;
 
@@ -167,7 +167,7 @@ public class CraftStateManager : MonoBehaviour
 		UpdateStatusText();
 
 		if (process >= targetProcess) {
-			StartCoroutine(ChangeState(currentStateIndex+1, false));
+			StartCoroutine(ChangeState(curStateID+1, false));
 		}
 
 		isLockInput = false;
@@ -175,10 +175,10 @@ public class CraftStateManager : MonoBehaviour
 
 	void UpdateStatusText()
 	{
-		int x = currentStateIndex;
+		int x = curStateID;
 		process = (float)(currWpix - states[x].initWPix) / (float)(states[x].initBPix);
 
-		UIManager.Instance.SetLabel_Level(currentStateIndex + 1);
+		UIManager.Instance.SetLabel_Level(curStateID + 1);
 		UIManager.Instance.SetLabel_Process(Mathf.RoundToInt(
 			Mathf.Clamp(process / targetProcess * 100, 0.0f, 100.0f)));
 	}

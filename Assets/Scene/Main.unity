@@ -444,49 +444,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44437499}
   m_CullTransparentMesh: 0
---- !u!1 &58871536
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 58871538}
-  - component: {fileID: 58871537}
-  m_Layer: 0
-  m_Name: DevPreload
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &58871537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58871536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffdb71ad54514935ada10b5841d163c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &58871538
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58871536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 489.3556, y: 1631.6234, z: 50}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &68671280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3361,6 +3318,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &714572875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2314130315954464767, guid: 7205fc8fff4ac48b2afabe2433681899,
+    type: 3}
+  m_PrefabInstance: {fileID: 2314130315985197674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd384e936cd2c49ad9653f92e33f10de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &725639351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3442,7 +3411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &759753040
 Mesh:
@@ -3849,7 +3818,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 852786527}
+  - component: {fileID: 852786528}
   - component: {fileID: 852786526}
+  - component: {fileID: 852786529}
+  - component: {fileID: 852786530}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3890,8 +3862,60 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852786528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852786525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5619d12d23c40e3959482ddd6f67c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curSceneName: 
+  gameplaySceneName: 
+  crafter: {fileID: 714572875}
+--- !u!114 &852786529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852786525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce2de84678784826bdaa31f0c3a255d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDatas:
+  - weapons: {fileID: 1035140141}
+    isUnlock: 1
+    isDone: 0
+  - weapons: {fileID: 1035140141}
+    isUnlock: 0
+    isDone: 1
+  - weapons: {fileID: 1035140141}
+    isUnlock: 1
+    isDone: 1
+  curLevelID: 0
+--- !u!114 &852786530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852786525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764f089c9e7ff4e679575de9ac326c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPool:
+  - {fileID: 1035140141}
 --- !u!1 &887018247
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,6 +4557,26 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1035140137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2314130314575768804, guid: 7205fc8fff4ac48b2afabe2433681899,
+    type: 3}
+  m_PrefabInstance: {fileID: 2314130315985197674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035140141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035140137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719cb00d8d4484d988cc8a0fa7a22b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Axe
+  crafter: {fileID: 0}
 --- !u!1 &1038515227
 GameObject:
   m_ObjectHideFlags: 0
@@ -6248,7 +6292,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1781461723}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 852786529}
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1781461723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6862,7 +6917,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1921321246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 852786529}
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1921321246
 MonoBehaviour:
   m_ObjectHideFlags: 0

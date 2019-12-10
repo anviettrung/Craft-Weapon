@@ -8,7 +8,47 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager>
 {
 	public List<LevelData> levelDatas;
+	public int curLevelID;
 
+	// ---------------------------------------------------------------------
+	public void OpenNextLevel()
+	{
+		OpenLevel(curLevelID + 1);
+	}
+
+	public void OpenLevel(int x)
+	{
+		curLevelID = x;
+
+
+	}
+
+	public void UnlockLevel(bool status)
+	{
+		UnlockLevel(curLevelID, status);
+	}
+
+	public void UnlockLevel(int x, bool status)
+	{
+
+	}
+
+	public void FinishLevel(bool status)
+	{
+		FinishLevel(curLevelID, status);
+	}
+
+	public void FinishLevel(int x, bool status)
+	{
+
+	}
+
+
+	// ---------------------------------------------------------------------
+	// *
+	// * SAVE / LOAD GAME DATA
+	// *
+	// ---------------------------------------------------------------------
 	public void ClearLevelData()
 	{
 		levelDatas = new List<LevelData>();
@@ -20,18 +60,19 @@ public class LevelManager : Singleton<LevelManager>
 		LevelSaveData save = new LevelSaveData();
 
 		foreach (LevelData data in levelDatas) {
-
-			if (data.weapons != null)
-				save.weaponNames.Add(data.weapons.weaponName);
+		
+			save.weaponNames.Add(data.weapons.weaponName);
 			save.isUnlock.Add(data.isUnlock);
 			save.isDone.Add(data.isDone);
 
 		}
 
+		save.curLevelID = curLevelID;
+
 		return save;
 	}
 
-	public void SaveGame()
+	public void SaveGameData()
 	{
 		LevelSaveData save = CreateSave();
 
@@ -41,7 +82,7 @@ public class LevelManager : Singleton<LevelManager>
 		file.Close();
 	}
 
-	public void LoadGame()
+	public void LoadGameData()
 	{
 		if (File.Exists(Application.persistentDataPath + "/levelsave.save")) {
 
@@ -50,8 +91,12 @@ public class LevelManager : Singleton<LevelManager>
 			LevelSaveData save = (LevelSaveData)bf.Deserialize(file);
 			file.Close();
 
+
+			// Clear
 			ClearLevelData();
 
+			// ---------------------------------------------------------------------
+			// Load
 			for (int i = 0; i < save.isUnlock.Count; i++) {
 
 				LevelData data = new LevelData();
@@ -63,8 +108,8 @@ public class LevelManager : Singleton<LevelManager>
 
 			}
 
-		} else {
-			// No Level Save
+			curLevelID = save.curLevelID;
+			// ---------------------------------------------------------------------
 		}
 	}
 
@@ -81,6 +126,8 @@ public class LevelData
 [System.Serializable]
 public class LevelSaveData
 {
+	public int curLevelID;
+
 	public List<string> weaponNames = new List<string>();
 	public List<bool> isUnlock = new List<bool>();
 	public List<bool> isDone = new List<bool>();
