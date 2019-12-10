@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
 	public string curSceneName;
+	public string gameplaySceneName;
 	public CraftStateManager crafter;
 
 	public void Awake()
@@ -16,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 
 	public void OnPreload()
 	{
-
+		ChangeScene(gameplaySceneName);
 	}
 
 	public void ChangeScene(int x)

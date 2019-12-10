@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class CraftStateManager : MonoBehaviour
 {
 	[System.Serializable]
@@ -58,6 +59,8 @@ public class CraftStateManager : MonoBehaviour
 		}
 	}
 
+	public string weaponName;
+
 	// Track component
 	[HideInInspector]
 	public DrawOnTexture drawer;
@@ -67,6 +70,8 @@ public class CraftStateManager : MonoBehaviour
 	public List<State> states;
 	public float targetProcess;
 
+	// Event - Signal
+	public UnityEvent OnFinishingLevel = new UnityEvent();
 
 	// In-game process
 	[SerializeField]

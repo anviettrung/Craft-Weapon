@@ -10,6 +10,7 @@ public class DevPreload : MonoBehaviour
 	void Awake()
 	{
 		GameObject check = GameObject.Find("__app");
+		Debug.Log(check);
 		if (check == null) { 
 			UnityEngine.SceneManagement.SceneManager.LoadScene("_preload"); 
 		}
