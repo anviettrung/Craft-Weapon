@@ -10,10 +10,6 @@ public class ExplodeOnClick : MonoBehaviour {
 	{
 		_explodable = GetComponent<Explodable>();
 	}
-	//void OnMouseDown()
-	//{
-	//	EXPLOSION();
-	//}
 
 	public void EXPLOSION()
 	{
