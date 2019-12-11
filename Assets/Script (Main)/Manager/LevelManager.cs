@@ -10,9 +10,16 @@ public class LevelManager : Singleton<LevelManager>
 	public List<LevelData> levelDatas;
 	public int curLevelID;
 
+	public Weapon currentWeapon;
+
 	public GameObject tablePrefab;
 
 	// ---------------------------------------------------------------------
+	public void OpenLastestLevel()
+	{
+		OpenLevel(curLevelID);
+	}
+
 	public void OpenNextLevel()
 	{
 		OpenLevel(curLevelID + 1);
@@ -20,9 +27,20 @@ public class LevelManager : Singleton<LevelManager>
 
 	public void OpenLevel(int x)
 	{
+		if (x < 0 || x >= levelDatas.Count) {
+			Debug.Log("No level left");
+			return;
+		}
+
 		curLevelID = x;
 
+		if (currentWeapon != null)
+			Destroy(currentWeapon.gameObject);
 
+		UIManager.Instance.botUI.gameObject.SetActive(false);
+		UIManager.Instance.midUI.gameObject.SetActive(false);
+
+		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
 	}
 
 	public void UnlockLevel(bool status)
@@ -41,6 +59,11 @@ public class LevelManager : Singleton<LevelManager>
 	}
 
 	public void FinishLevel(int x, bool status)
+	{
+
+	}
+
+	public void UpdateShop()
 	{
 
 	}

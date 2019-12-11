@@ -1952,7 +1952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2314130314575768826
 Transform:
   m_ObjectHideFlags: 0
@@ -2273,7 +2273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd384e936cd2c49ad9653f92e33f10de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
   drawer: {fileID: 0}
   anim: {fileID: 2314130314575768805}
   states:
@@ -2281,7 +2280,7 @@ MonoBehaviour:
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 7400000, guid: bddb87c0adc5a4ab583cd31a8f790068, type: 2}
-    tool: {fileID: 0}
+    toolName: 
     totalPix: 0
     initWPix: 0
     initBPix: 0
@@ -2289,7 +2288,7 @@ MonoBehaviour:
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 0}
-    tool: {fileID: 0}
+    toolName: 
     totalPix: 0
     initWPix: 0
     initBPix: 0
@@ -2297,7 +2296,7 @@ MonoBehaviour:
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 0}
-    tool: {fileID: 0}
+    toolName: 
     totalPix: 0
     initWPix: 0
     initBPix: 0

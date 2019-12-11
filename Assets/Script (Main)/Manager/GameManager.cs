@@ -15,14 +15,15 @@ public class GameManager : Singleton<GameManager>
 			OnPreload();
 	}
 
-	private void OnLevelWasLoaded(int level)
+	private void Start()
 	{
-		curSceneName = UnityEngine.SceneManagement.SceneManager.GetSceneAt(level).name;
+		LevelManager.Instance.OpenLastestLevel();
 	}
 
 	public void OnPreload()
 	{
 		ChangeScene(gameplaySceneName);
+		//LevelManager.Instance.OpenLevel(0);
 	}
 
 	public void ChangeScene(int x)

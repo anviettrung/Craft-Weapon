@@ -17,13 +17,16 @@ public class UIManager : Singleton<UIManager>
 	public Button settingButton;
 
 	// Mid UI
+	public RectTransform shopItemHolder;
+	public Button completedCellPrefab;
+	public Button lockCellPrefab;
 
 	// Bot UI
 	public Text rewardCoinLabel;
 
 
 	//----------------------------------------------------------
-	// 
+	// Top UI function
 	//----------------------------------------------------------
 	public void SetLabel_Level(int x)
 	{
@@ -41,9 +44,23 @@ public class UIManager : Singleton<UIManager>
 	}
 
 	//----------------------------------------------------------
-	// 
+	// Mid UI function
 	//----------------------------------------------------------
+	public Button CreateLockItemInShop(string itemName, int price)
+	{
+	
 
+	}
+
+	public Button CreateUnfinishedItemInShop(string itemName, Sprite itemIcon)
+	{
+
+	}
+
+	public Button CreateFinishedItemInShop(string itemName, Sprite itemIcon)
+	{
+
+	}
 
 	//----------------------------------------------------------
 	// 

@@ -11,6 +11,8 @@ public class Crafter : MonoBehaviour
 	[HideInInspector]
 	public DrawOnTexture drawer;
 	public Animator anim;
+	public Weapon weaponController;
+
 
 	// Init data
 	public List<State> states;
@@ -59,22 +61,20 @@ public class Crafter : MonoBehaviour
 			return;
 
 		ToolManager.Instance.GetActiveTool().UpdatePosition(Input.mousePosition);
-
-		if (isOn) {
-			ToolManager.Instance.GetActiveTool().SetEffectActive(true);
-		} else {
-			ToolManager.Instance.GetActiveTool().SetEffectActive(false);
-		}
+		ToolManager.Instance.GetActiveTool().SetEffectActive(isOn);
 	}
 
 	public IEnumerator ChangeState(int nextStateIndex, bool firstChange)
 	{
-		if (nextStateIndex >= states.Count)
+		if (nextStateIndex >= states.Count) {
+			weaponController.OnFinishedWeapon.Invoke();
+			UpdateTool(false);
 			yield break;
+		}
 
 		isLockInput = true;
 		isChangingState = true;
-		
+
 		if (!firstChange)
 			yield return StartCoroutine(states[curStateID].OnEnd());
 
