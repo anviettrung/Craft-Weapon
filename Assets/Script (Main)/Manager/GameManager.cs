@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
 
 	public void OnPreload()
 	{
-		ChangeScene(gameplaySceneName);
+		//ChangeScene(gameplaySceneName);
 		LevelManager.Instance.LoadGameData();
 		LevelManager.Instance.OpenLastestLevel();
 	}

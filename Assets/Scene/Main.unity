@@ -1119,6 +1119,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 725639353}
+    - target: {fileID: 1314334031324843175, guid: e10ecf37572aa4f2a94eb5843712f420,
+        type: 3}
+      propertyPath: m_Text
+      value: Level X
+      objectReference: {fileID: 0}
     - target: {fileID: 1314334029333047560, guid: e10ecf37572aa4f2a94eb5843712f420,
         type: 3}
       propertyPath: m_SizeDelta.y

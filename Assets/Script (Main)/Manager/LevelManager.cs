@@ -65,7 +65,7 @@ public class LevelManager : Singleton<LevelManager>
 	public void FinishLevel(int x)
 	{
 		levelDatas[x].isFinished = true;
-		lastestLevelID += 1;
+		lastestLevelID = Mathf.Clamp(lastestLevelID + 1, 0, levelDatas.Count-1);
 		SaveGameData();
 	}
 
