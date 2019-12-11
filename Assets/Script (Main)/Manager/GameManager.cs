@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
 {
 	public string curSceneName;
 	public string gameplaySceneName;
-	public CraftStateManager crafter;
+	public Crafter crafter;
 
 	public void Awake()
 	{

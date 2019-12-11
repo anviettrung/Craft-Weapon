@@ -5,62 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class CraftStateManager : MonoBehaviour
+public class Crafter : MonoBehaviour
 {
-	[System.Serializable]
-	public class State
-	{
-		public Material mat;
-		public Animator anim;
-		public AnimationClip startAnimName;
-		public AnimationClip endingAnimName;
-
-		public Tool tool;
-
-		public int totalPix;
-		public int initWPix;
-		public int initBPix;
-
-		public void Init()
-		{
-			Texture2D tex = mat.GetTexture("_MaskTex") as Texture2D;
-			Color[] texmap = tex.GetPixels();
-			totalPix = texmap.Length;
-			initWPix = 0;
-			for (int i = 0; i < totalPix; i++) {
-				if (texmap[i].r > 0)
-					initWPix++;
-			}
-			initBPix = totalPix - initWPix;
-		}
-
-		public virtual IEnumerator OnStart()
-		{
-			if (startAnimName != null) {
-				anim.enabled = true;
-				anim.Play(startAnimName.name);
-				yield return new WaitForSeconds(startAnimName.length);
-				anim.enabled = false;
-			}
-
-			yield break;
-		}
-
-		public virtual IEnumerator OnEnd()
-		{
-			if (endingAnimName != null) {
-				anim.enabled = true;
-				anim.Play(endingAnimName.name);
-				yield return new WaitForSeconds(endingAnimName.length);
-				anim.enabled = false;
-			}
-
-			yield break;
-		}
-	}
-
-	public string weaponName;
-
 	// Track component
 	[HideInInspector]
 	public DrawOnTexture drawer;
@@ -68,9 +14,10 @@ public class CraftStateManager : MonoBehaviour
 
 	// Init data
 	public List<State> states;
-	public float targetProcess;
+	public float targetProcess = 0.95f;
 
 	// Event - Signal
+	[HideInInspector]
 	public UnityEvent OnFinishingLevel = new UnityEvent();
 
 	// In-game process
@@ -100,7 +47,7 @@ public class CraftStateManager : MonoBehaviour
 				isChangingState = false;
 		} else if (Input.GetMouseButton(0)) {
 			UpdateTool(true);
-			drawer.DoAction(states[curStateID].tool.GetAffectPosition(Input.mousePosition));
+			drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(Input.mousePosition));
 		} else {
 			UpdateTool(false);
 		}
@@ -108,15 +55,15 @@ public class CraftStateManager : MonoBehaviour
 
 	void UpdateTool(bool isOn)
 	{
-		if (states[curStateID].tool == null)
+		if (ToolManager.Instance.GetActiveTool() == null)
 			return;
 
-		states[curStateID].tool.UpdatePosition(Input.mousePosition);
+		ToolManager.Instance.GetActiveTool().UpdatePosition(Input.mousePosition);
 
 		if (isOn) {
-			states[curStateID].tool.SetEffectActive(true);
+			ToolManager.Instance.GetActiveTool().SetEffectActive(true);
 		} else {
-			states[curStateID].tool.SetEffectActive(false);
+			ToolManager.Instance.GetActiveTool().SetEffectActive(false);
 		}
 	}
 
@@ -127,9 +74,7 @@ public class CraftStateManager : MonoBehaviour
 
 		isLockInput = true;
 		isChangingState = true;
-
-		states[curStateID].tool.gameObject.SetActive(false);
-
+		
 		if (!firstChange)
 			yield return StartCoroutine(states[curStateID].OnEnd());
 
@@ -137,7 +82,7 @@ public class CraftStateManager : MonoBehaviour
 
 		yield return StartCoroutine(states[nextStateIndex].OnStart());
 
-		states[curStateID].tool.gameObject.SetActive(true);
+		ToolManager.Instance.ChangeTool(states[nextStateIndex].toolName);
 
 		GetComponent<Renderer>().material = states[nextStateIndex].mat;
 
@@ -183,4 +128,59 @@ public class CraftStateManager : MonoBehaviour
 			Mathf.Clamp(process / targetProcess * 100, 0.0f, 100.0f)));
 	}
 
+}
+
+[System.Serializable]
+public class State
+{
+	public Material mat;
+	public Animator anim;
+	public AnimationClip startAnimName;
+	public AnimationClip endingAnimName;
+
+	public string toolName;
+
+	[HideInInspector]
+	public int totalPix;
+	[HideInInspector]
+	public int initWPix;
+	[HideInInspector]
+	public int initBPix;
+
+	public void Init()
+	{
+		Texture2D tex = mat.GetTexture("_MaskTex") as Texture2D;
+		Color[] texmap = tex.GetPixels();
+		totalPix = texmap.Length;
+		initWPix = 0;
+		for (int i = 0; i < totalPix; i++) {
+			if (texmap[i].r > 0)
+				initWPix++;
+		}
+		initBPix = totalPix - initWPix;
+	}
+
+	public virtual IEnumerator OnStart()
+	{
+		if (startAnimName != null) {
+			anim.enabled = true;
+			anim.Play(startAnimName.name);
+			yield return new WaitForSeconds(startAnimName.length);
+			anim.enabled = false;
+		}
+
+		yield break;
+	}
+
+	public virtual IEnumerator OnEnd()
+	{
+		if (endingAnimName != null) {
+			anim.enabled = true;
+			anim.Play(endingAnimName.name);
+			yield return new WaitForSeconds(endingAnimName.length);
+			anim.enabled = false;
+		}
+
+		yield break;
+	}
 }

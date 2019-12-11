@@ -10,6 +10,8 @@ public class LevelManager : Singleton<LevelManager>
 	public List<LevelData> levelDatas;
 	public int curLevelID;
 
+	public GameObject tablePrefab;
+
 	// ---------------------------------------------------------------------
 	public void OpenNextLevel()
 	{

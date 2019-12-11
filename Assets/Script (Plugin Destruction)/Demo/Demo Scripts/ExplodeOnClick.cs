@@ -11,6 +11,11 @@ public class ExplodeOnClick : MonoBehaviour {
 		_explodable = GetComponent<Explodable>();
 	}
 
+	public void OnMouseDown()
+	{
+		EXPLOSION();
+	}
+
 	public void EXPLOSION()
 	{
 		_explodable.explode();

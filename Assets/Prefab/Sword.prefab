@@ -1947,7 +1947,7 @@ GameObject:
   - component: {fileID: 2314130314575768827}
   - component: {fileID: 1035140141}
   m_Layer: 0
-  m_Name: Axe
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719cb00d8d4484d988cc8a0fa7a22b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Axe
+  weaponName: Sword
   crafter: {fileID: 0}
 --- !u!1 &2314130315058259954
 GameObject:
@@ -2234,7 +2234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2314130315954464740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.74, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 12.384, y: 24.768, z: 1}
   m_Children: []
   m_Father: {fileID: 2314130314575768826}
@@ -2277,7 +2277,7 @@ MonoBehaviour:
   drawer: {fileID: 0}
   anim: {fileID: 2314130314575768805}
   states:
-  - mat: {fileID: 2100000, guid: 631d9dc6b513c447a875cd7ee33f089a, type: 2}
+  - mat: {fileID: 2100000, guid: 188e96812972f4ed2879467d0b52f92a, type: 2}
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 7400000, guid: bddb87c0adc5a4ab583cd31a8f790068, type: 2}
@@ -2285,7 +2285,7 @@ MonoBehaviour:
     totalPix: 0
     initWPix: 0
     initBPix: 0
-  - mat: {fileID: 2100000, guid: 57c644a2c14264b1a810b82051c44753, type: 2}
+  - mat: {fileID: 2100000, guid: d7903dd163b894afaa758bd2a06c2f66, type: 2}
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 0}
@@ -2334,7 +2334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 631d9dc6b513c447a875cd7ee33f089a, type: 2}
+  - {fileID: 2100000, guid: 188e96812972f4ed2879467d0b52f92a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

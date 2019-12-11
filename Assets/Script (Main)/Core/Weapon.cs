@@ -5,10 +5,10 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 	public string weaponName;
-	public CraftStateManager crafter;
+	public Crafter crafter;
 
 	private void Awake()
 	{
-		crafter = GetComponentInChildren<CraftStateManager>();
+		crafter = GetComponentInChildren<Crafter>();
 	}
 }

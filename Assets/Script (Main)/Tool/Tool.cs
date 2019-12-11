@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleController))]
 public class Tool : MonoBehaviour
 {
+	public string toolName;
+
 	public ParticleController particleController;
 	public Transform initTransform;
 	public Vector3 firstTouchOffset;

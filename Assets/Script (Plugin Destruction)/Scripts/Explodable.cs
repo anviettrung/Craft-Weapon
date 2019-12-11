@@ -86,7 +86,7 @@ public class Explodable : MonoBehaviour
     /// <summary>
     /// Turns Gameobject into multiple fragments
     /// </summary>
-    private void generateFragments()
+    public void generateFragments()
     {
         fragments = new List<GameObject>();
         switch (shatterType)
