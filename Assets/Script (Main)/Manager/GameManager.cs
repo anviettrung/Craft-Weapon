@@ -17,7 +17,8 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
-		LevelManager.Instance.SaveGameData();
+		// Active these lines of code will RESET GAME DATA
+		// LevelManager.Instance.SaveGameData();
 		OnPreload();
 	}
 

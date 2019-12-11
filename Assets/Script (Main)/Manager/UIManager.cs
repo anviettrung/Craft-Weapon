@@ -16,7 +16,10 @@ public class UIManager : Singleton<UIManager>
 	public Text coinLabel;
 	public Button settingButton;
 
-	// Mid UI
+	// Setting UI
+	public RectTransform settingPanel;
+
+	// Shop UI
 	public RectTransform shopUI;
 	public RectTransform shopItemHolder;
 	public Button completedCellPrefab;
@@ -41,6 +44,16 @@ public class UIManager : Singleton<UIManager>
 	public void SetLabel_Coin(int x)
 	{
 		coinLabel.text = x.ToString();
+	}
+
+	public void OpenSettingUI()
+	{
+		
+	}
+
+	public void CloseSettingUI()
+	{
+
 	}
 
 	//----------------------------------------------------------
@@ -90,6 +103,11 @@ public class UIManager : Singleton<UIManager>
 	public void SetLabel_RewardCoin(int x)
 	{
 		rewardCoinLabel.text = x.ToString();
+	}
+
+	public void WatchADs()
+	{
+
 	}
 
 }

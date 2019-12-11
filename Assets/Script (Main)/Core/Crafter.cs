@@ -29,7 +29,7 @@ public class Crafter : MonoBehaviour
 	protected int curStateID = 0;
 	public bool isLockInput = false;
 	public bool isChangingState = false;
-	public bool isWon = false;
+	public bool isSaving = false;
 
 	private void Start()
 	{
@@ -44,10 +44,13 @@ public class Crafter : MonoBehaviour
 
 	protected void Update()
 	{
+		if (isSaving)
+			return;
+
 		if (isChangingState) {
 			if (!isLockInput && Input.GetMouseButtonDown(0))
 				isChangingState = false;
-		} else if (Input.GetMouseButton(0)) {
+		} else if (!isLockInput &&  Input.GetMouseButton(0)) {
 			UpdateTool(true);
 			drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(Input.mousePosition));
 		} else {
@@ -67,8 +70,14 @@ public class Crafter : MonoBehaviour
 	public IEnumerator ChangeState(int nextStateIndex, bool firstChange)
 	{
 		if (nextStateIndex >= states.Count) {
-			weaponController.OnFinishedWeapon.Invoke();
-			UpdateTool(false);
+			weaponController.onFinishedWeapon.Invoke();
+			weaponController.onFinishedWeapon.RemoveAllListeners();
+
+			isLockInput = true;
+			isChangingState = true;
+
+			ToolManager.Instance.GetActiveTool().gameObject.SetActive(false);
+
 			yield break;
 		}
 
@@ -99,7 +108,7 @@ public class Crafter : MonoBehaviour
 
 	void OnSavingTexture()
 	{
-		isLockInput = true;
+		isSaving = true;
 
 		Color[] texmap = drawer.dynammicMaskTexture.GetPixels();
 
@@ -115,7 +124,7 @@ public class Crafter : MonoBehaviour
 			StartCoroutine(ChangeState(curStateID+1, false));
 		}
 
-		isLockInput = false;
+		isSaving = false;
 	}
 
 	void UpdateStatusText()

@@ -8,16 +8,16 @@ public class Weapon : MonoBehaviour
 	public string weaponName;
 	public Crafter crafter;
 
-	public UnityEvent OnFinishedWeapon = new UnityEvent();
+	public UnityEvent onFinishedWeapon = new UnityEvent();
 
 	private void Awake()
 	{
 		crafter = GetComponentInChildren<Crafter>();
 		crafter.weaponController = this;
-		OnFinishedWeapon.AddListener(Won);
+		onFinishedWeapon.AddListener(OnFinishedWeapon);
 	}
 
-	void Won()
+	void OnFinishedWeapon()
 	{
 		UIManager.Instance.botUI.gameObject.SetActive(true);
 		UIManager.Instance.midUI.gameObject.SetActive(true);

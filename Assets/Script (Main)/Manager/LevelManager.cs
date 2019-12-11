@@ -9,15 +9,15 @@ public class LevelManager : Singleton<LevelManager>
 {
 	public List<LevelData> levelDatas;
 	public int curLevelID;
+	public int lastestLevelID;
 
 	public Weapon currentWeapon;
-
 	public GameObject tablePrefab;
 
 	// ---------------------------------------------------------------------
 	public void OpenLastestLevel()
 	{
-		OpenLevel(curLevelID);
+		OpenLevel(lastestLevelID);
 	}
 
 	public void OpenNextLevel()
@@ -34,13 +34,17 @@ public class LevelManager : Singleton<LevelManager>
 
 		curLevelID = x;
 
-		if (currentWeapon != null)
+		if (currentWeapon != null) {
+			currentWeapon.onFinishedWeapon.RemoveListener(FinishLevel);
 			Destroy(currentWeapon.gameObject);
+		}
 
 		UIManager.Instance.botUI.gameObject.SetActive(false);
 		UIManager.Instance.midUI.gameObject.SetActive(false);
 
 		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
+
+		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
 	}
 
 	public void UnlockLevel(bool status)
@@ -53,14 +57,16 @@ public class LevelManager : Singleton<LevelManager>
 
 	}
 
-	public void FinishLevel(bool status)
+	public void FinishLevel()
 	{
-		FinishLevel(curLevelID, status);
+		FinishLevel(curLevelID);
 	}
 
-	public void FinishLevel(int x, bool status)
+	public void FinishLevel(int x)
 	{
-
+		levelDatas[x].isFinished = true;
+		lastestLevelID += 1;
+		SaveGameData();
 	}
 
 	public void UpdateShop()
@@ -88,11 +94,11 @@ public class LevelManager : Singleton<LevelManager>
 		
 			save.weaponNames.Add(data.weapons.weaponName);
 			save.isUnlock.Add(data.isUnlock);
-			save.isDone.Add(data.isDone);
+			save.isFinished.Add(data.isFinished);
 
 		}
 
-		save.curLevelID = curLevelID;
+		save.lastestLevelID = lastestLevelID;
 
 		return save;
 	}
@@ -127,13 +133,15 @@ public class LevelManager : Singleton<LevelManager>
 				LevelData data = new LevelData();
 				data.weapons = WeaponPool.Instance.GetWeapon(save.weaponNames[i]);
 				data.isUnlock = save.isUnlock[i];
-				data.isDone = save.isDone[i];
+				data.isFinished = save.isFinished[i];
 
 				levelDatas.Add(data);
 
 			}
 
-			curLevelID = save.curLevelID;
+			curLevelID     = save.lastestLevelID;
+			lastestLevelID = save.lastestLevelID;
+
 			// ---------------------------------------------------------------------
 		}
 	}
@@ -145,16 +153,16 @@ public class LevelData
 {
 	public Weapon weapons;
 	public bool isUnlock;
-	public bool isDone;
+	public bool isFinished;
 }
 
 [System.Serializable]
 public class LevelSaveData
 {
-	public int curLevelID;
+	public int lastestLevelID;
 
 	public List<string> weaponNames = new List<string>();
 	public List<bool> isUnlock = new List<bool>();
-	public List<bool> isDone = new List<bool>();
+	public List<bool> isFinished = new List<bool>();
 
 }
