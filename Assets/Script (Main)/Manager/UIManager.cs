@@ -17,13 +17,13 @@ public class UIManager : Singleton<UIManager>
 	public Button settingButton;
 
 	// Mid UI
+	public RectTransform shopUI;
 	public RectTransform shopItemHolder;
 	public Button completedCellPrefab;
 	public Button lockCellPrefab;
 
 	// Bot UI
 	public Text rewardCoinLabel;
-
 
 	//----------------------------------------------------------
 	// Top UI function
@@ -46,20 +46,42 @@ public class UIManager : Singleton<UIManager>
 	//----------------------------------------------------------
 	// Mid UI function
 	//----------------------------------------------------------
+	public void OpenShop()
+	{
+		LevelManager.Instance.currentWeapon.gameObject.SetActive(false);
+		ToolManager.Instance.GetActiveTool().gameObject.SetActive(false);
+
+		botUI.gameObject.SetActive(false);
+		midUI.gameObject.SetActive(false);
+
+		shopUI.gameObject.SetActive(true);
+	}
+
+	public void CloseShop()
+	{
+		shopUI.gameObject.SetActive(false);
+
+		LevelManager.Instance.currentWeapon.gameObject.SetActive(true);
+
+		botUI.gameObject.SetActive(true);
+		midUI.gameObject.SetActive(true);
+	}
+
+
 	public Button CreateLockItemInShop(string itemName, int price)
 	{
-	
+		return null;
 
 	}
 
 	public Button CreateUnfinishedItemInShop(string itemName, Sprite itemIcon)
 	{
-
+		return null;
 	}
 
 	public Button CreateFinishedItemInShop(string itemName, Sprite itemIcon)
 	{
-
+		return null;
 	}
 
 	//----------------------------------------------------------

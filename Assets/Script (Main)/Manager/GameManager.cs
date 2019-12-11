@@ -17,13 +17,15 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
-		LevelManager.Instance.OpenLastestLevel();
+		LevelManager.Instance.SaveGameData();
+		OnPreload();
 	}
 
 	public void OnPreload()
 	{
 		ChangeScene(gameplaySceneName);
-		//LevelManager.Instance.OpenLevel(0);
+		LevelManager.Instance.LoadGameData();
+		LevelManager.Instance.OpenLastestLevel();
 	}
 
 	public void ChangeScene(int x)
