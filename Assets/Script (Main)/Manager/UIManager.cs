@@ -21,7 +21,7 @@ public class UIManager : Singleton<UIManager>
 
 	// Shop UI
 	public RectTransform shopUI;
-	public RectTransform shopItemHolder;
+	public Shop shop;
 	public Button completedCellPrefab;
 	public Button lockCellPrefab;
 
@@ -67,6 +67,8 @@ public class UIManager : Singleton<UIManager>
 		botUI.gameObject.SetActive(false);
 		midUI.gameObject.SetActive(false);
 
+		shop.UpdateShop(LevelManager.Instance.levelDatas);
+
 		shopUI.gameObject.SetActive(true);
 	}
 
@@ -80,22 +82,6 @@ public class UIManager : Singleton<UIManager>
 		midUI.gameObject.SetActive(true);
 	}
 
-
-	public Button CreateLockItemInShop(string itemName, int price)
-	{
-		return null;
-
-	}
-
-	public Button CreateUnfinishedItemInShop(string itemName, Sprite itemIcon)
-	{
-		return null;
-	}
-
-	public Button CreateFinishedItemInShop(string itemName, Sprite itemIcon)
-	{
-		return null;
-	}
 
 	//----------------------------------------------------------
 	// 

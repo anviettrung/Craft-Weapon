@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-	public List<LevelData> levelDatas;
+	public List<LevelData> levelDatas = new List<LevelData>();
 	public int curLevelID;
 	public int lastestLevelID;
 
@@ -18,6 +18,19 @@ public class LevelManager : Singleton<LevelManager>
 	public void OpenLastestLevel()
 	{
 		OpenLevel(lastestLevelID);
+	}
+
+	public void OpenLevel(string weaponName)
+	{
+		for (int i = 0; i < levelDatas.Count; i++) {
+
+			if (levelDatas[i].weapons.weaponName == weaponName) {
+				OpenLevel(i);
+				return;
+			}
+		}
+
+		Debug.Log("Can't find weapon name: " + weaponName);
 	}
 
 	public void OpenNextLevel()
@@ -41,6 +54,7 @@ public class LevelManager : Singleton<LevelManager>
 
 		UIManager.Instance.botUI.gameObject.SetActive(false);
 		UIManager.Instance.midUI.gameObject.SetActive(false);
+		UIManager.Instance.shopUI.gameObject.SetActive(false);
 
 		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
 
@@ -54,7 +68,7 @@ public class LevelManager : Singleton<LevelManager>
 
 	public void UnlockLevel(int x, bool status)
 	{
-
+		levelDatas[x].isUnlock = true;
 	}
 
 	public void FinishLevel()
@@ -67,11 +81,6 @@ public class LevelManager : Singleton<LevelManager>
 		levelDatas[x].isFinished = true;
 		lastestLevelID = Mathf.Clamp(lastestLevelID + 1, 0, levelDatas.Count-1);
 		SaveGameData();
-	}
-
-	public void UpdateShop()
-	{
-
 	}
 
 
@@ -91,7 +100,9 @@ public class LevelManager : Singleton<LevelManager>
 		LevelSaveData save = new LevelSaveData();
 
 		foreach (LevelData data in levelDatas) {
-		
+
+			Debug.Log(data);
+			Debug.Log(data.weapons);
 			save.weaponNames.Add(data.weapons.weaponName);
 			save.isUnlock.Add(data.isUnlock);
 			save.isFinished.Add(data.isFinished);
@@ -154,6 +165,17 @@ public class LevelData
 	public Weapon weapons;
 	public bool isUnlock;
 	public bool isFinished;
+
+	public void Unlock(bool s)
+	{
+		isUnlock = s;
+	}
+
+	public void Finish(bool s)
+	{
+		isFinished = s;
+	}
+
 }
 
 [System.Serializable]

@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class Weapon : MonoBehaviour
 {
 	public string weaponName;
+	public Sprite weaponIcon;
+	public int unlockCoins;
+	public int rewardCoins;
 	public Crafter crafter;
 
 	public UnityEvent onFinishedWeapon = new UnityEvent();

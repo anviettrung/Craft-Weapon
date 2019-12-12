@@ -18,14 +18,16 @@ public class GameManager : Singleton<GameManager>
 	private void Start()
 	{
 		// Active these lines of code will RESET GAME DATA
-		// LevelManager.Instance.SaveGameData();
+		LevelManager.Instance.SaveGameData();
+
+		// ------------------------------------------------
 		OnPreload();
 	}
 
 	public void OnPreload()
 	{
 		//ChangeScene(gameplaySceneName);
-		LevelManager.Instance.LoadGameData();
+		// LevelManager.Instance.LoadGameData();
 		LevelManager.Instance.OpenLastestLevel();
 	}
 
