@@ -13,6 +13,7 @@ public class LevelManager : Singleton<LevelManager>
 
 	public Weapon currentWeapon;
 	public GameObject tablePrefab;
+	protected TableDestroyer trackTable;
 
 	// ---------------------------------------------------------------------
 	public void OpenLastestLevel()
@@ -57,6 +58,7 @@ public class LevelManager : Singleton<LevelManager>
 		UIManager.Instance.shopUI.gameObject.SetActive(false);
 
 		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
+		trackTable = Instantiate(tablePrefab).GetComponent<TableDestroyer>();
 
 		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
 	}
@@ -79,8 +81,14 @@ public class LevelManager : Singleton<LevelManager>
 	public void FinishLevel(int x)
 	{
 		levelDatas[x].isFinished = true;
-		lastestLevelID = Mathf.Clamp(lastestLevelID + 1, 0, levelDatas.Count-1);
+		lastestLevelID = Mathf.Clamp(curLevelID + 1, 0, levelDatas.Count-1);
 		SaveGameData();
+	}
+
+	public void DestroyTable()
+	{
+		Debug.Log("LEVELMANAGER destroy table");
+		trackTable.Explosion();
 	}
 
 

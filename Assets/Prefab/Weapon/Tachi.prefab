@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8077740179489999568}
   - component: {fileID: 8077740179489999569}
   - component: {fileID: 8077740179489999570}
+  - component: {fileID: 5855148081906383925}
   m_Layer: 0
   m_Name: Tachi
   m_TagString: Untagged
@@ -92,16 +93,17 @@ MonoBehaviour:
   drawer: {fileID: 0}
   anim: {fileID: 0}
   weaponController: {fileID: 8077740179489999572}
+  lavaCooldownMat: {fileID: 2100000, guid: 33f2e3d6a48304d1ca5814b5a43c1c91, type: 2}
   states:
-  - mat: {fileID: 2100000, guid: 188e96812972f4ed2879467d0b52f92a, type: 2}
+  - mat: {fileID: 2100000, guid: 9081ccec705cd4cd2919fb5646a95b7a, type: 2}
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
-    endingAnimName: {fileID: 0}
+    endingAnimName: {fileID: 7400000, guid: b9621c1a7f4eb444a846f15625e04be1, type: 2}
     toolName: Lava Bottle
     totalPix: 0
     initWPix: 0
     initBPix: 0
-  - mat: {fileID: 2100000, guid: d7903dd163b894afaa758bd2a06c2f66, type: 2}
+  - mat: {fileID: 2100000, guid: 06ea501d17bbf47f79eaa87a6582f191, type: 2}
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 0}
@@ -109,7 +111,7 @@ MonoBehaviour:
     totalPix: 0
     initWPix: 0
     initBPix: 0
-  - mat: {fileID: 2100000, guid: 33518087bfdbc404b9a893fbf12305b9, type: 2}
+  - mat: {fileID: 2100000, guid: 722786cbef3c44a1bb398fb0f930be67, type: 2}
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
     endingAnimName: {fileID: 0}
@@ -185,3 +187,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &5855148081906383925
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077740179489999573}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc17e467443e74957bb3dab1a335e0f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

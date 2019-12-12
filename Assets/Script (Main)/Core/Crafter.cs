@@ -10,11 +10,14 @@ public class Crafter : MonoBehaviour
 	// Track component
 	[HideInInspector]
 	public DrawOnTexture drawer;
+	[HideInInspector]
 	public Animator anim;
+	[HideInInspector]
 	public Weapon weaponController;
 
 
 	// Init data
+	public Material lavaCooldownMat;
 	public List<State> states;
 	public float targetProcess = 0.95f;
 
@@ -31,9 +34,15 @@ public class Crafter : MonoBehaviour
 	public bool isChangingState = false;
 	public bool isSaving = false;
 
-	private void Start()
+	private void Awake()
 	{
 		drawer = GetComponent<DrawOnTexture>();
+		anim = GetComponent<Animator>();
+		weaponController = GetComponent<Weapon>();
+	}
+
+	private void Start()
+	{
 		for (int i = 0; i < states.Count; i++) {
 			states[i].Init();
 			states[i].anim = anim;
@@ -135,6 +144,24 @@ public class Crafter : MonoBehaviour
 		UIManager.Instance.SetLabel_Level(curStateID + 1);
 		UIManager.Instance.SetLabel_Process(Mathf.RoundToInt(
 			Mathf.Clamp(process / targetProcess * 100, 0.0f, 100.0f)));
+	}
+
+	// Animation Events
+	public void DestroyTable()
+	{
+		Debug.Log("Craft Destroy table");
+		LevelManager.Instance.DestroyTable();
+	}
+
+	public void ChangeToLavaCooldownMat()
+	{
+		GetComponent<Renderer>().material = lavaCooldownMat;
+	}
+
+	public void ChangeToNextMat()
+	{
+		GetComponent<Renderer>().material = states[curStateID + 1].mat;
+
 	}
 
 }

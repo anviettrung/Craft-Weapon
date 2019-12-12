@@ -10,6 +10,11 @@ public class TableDestroyer : MonoBehaviour
 
 	private void Awake()
 	{
+		explodable.fragmentInEditor();
+	}
+
+	private void Start()
+	{
 		frags = new List<GameObject>(explodable.fragments.Count);
 		foreach (GameObject frag in explodable.fragments) {
 			frags.Add(frag);
@@ -27,7 +32,6 @@ public class TableDestroyer : MonoBehaviour
 		explodable.explode();
 		ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
 		ef.doExplosion(transform.position);
-
 
 		foreach (GameObject frag in frags) {
 			frag.transform.SetParent(transform);
