@@ -93,6 +93,7 @@ MonoBehaviour:
   drawer: {fileID: 0}
   anim: {fileID: 5494129089408566119}
   weaponController: {fileID: 8077740179489999572}
+  whiteMask: {fileID: 2800000, guid: db3ac97d53b3d40e8975db0b9af6311a, type: 3}
   lavaCooldownMat: {fileID: 2100000, guid: 0f5c5af5d74c8453ca2bf2c93b2f9565, type: 2}
   states:
   - mat: {fileID: 2100000, guid: 631d9dc6b513c447a875cd7ee33f089a, type: 2}
@@ -114,7 +115,7 @@ MonoBehaviour:
   - mat: {fileID: 2100000, guid: 46c17e9a014d84a94a8bc95b15b4ff46, type: 2}
     anim: {fileID: 0}
     startAnimName: {fileID: 0}
-    endingAnimName: {fileID: 0}
+    endingAnimName: {fileID: 7400000, guid: 2bc7fa0d405fe473abbda3503d1ba390, type: 2}
     toolName: Spray
     totalPix: 0
     initWPix: 0

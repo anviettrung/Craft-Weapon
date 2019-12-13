@@ -17,6 +17,7 @@ public class Crafter : MonoBehaviour
 
 
 	// Init data
+	public Texture2D whiteMask;
 	public Material lavaCooldownMat;
 	public List<State> states;
 	public float targetProcess = 0.95f;
@@ -78,23 +79,20 @@ public class Crafter : MonoBehaviour
 
 	public IEnumerator ChangeState(int nextStateIndex, bool firstChange)
 	{
-		if (nextStateIndex >= states.Count) {
-			weaponController.onFinishedWeapon.Invoke();
-			weaponController.onFinishedWeapon.RemoveAllListeners();
-
-			isLockInput = true;
-			isChangingState = true;
-
-			ToolManager.Instance.GetActiveTool().gameObject.SetActive(false);
-
-			yield break;
-		}
-
 		isLockInput = true;
 		isChangingState = true;
 
 		if (!firstChange)
 			yield return StartCoroutine(states[curStateID].OnEnd());
+
+		if (nextStateIndex >= states.Count) {
+			weaponController.onFinishedWeapon.Invoke();
+			weaponController.onFinishedWeapon.RemoveAllListeners();
+
+			ToolManager.Instance.GetActiveTool().gameObject.SetActive(false);
+
+			yield break;
+		}
 
 		curStateID = nextStateIndex;
 
@@ -162,6 +160,12 @@ public class Crafter : MonoBehaviour
 	{
 		GetComponent<Renderer>().material = states[curStateID + 1].mat;
 
+	}
+
+	public void ApplyWhiteMask()
+	{
+		Debug.Log("AlphaWhiteMask");
+		GetComponent<Renderer>().material.SetTexture("_MaskTex", whiteMask);
 	}
 
 }
