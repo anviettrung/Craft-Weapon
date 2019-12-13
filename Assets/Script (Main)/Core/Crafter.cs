@@ -139,7 +139,6 @@ public class Crafter : MonoBehaviour
 		int x = curStateID;
 		process = (float)(currWpix - states[x].initWPix) / (float)(states[x].initBPix);
 
-		UIManager.Instance.SetLabel_Level(curStateID + 1);
 		UIManager.Instance.SetLabel_Process(Mathf.RoundToInt(
 			Mathf.Clamp(process / targetProcess * 100, 0.0f, 100.0f)));
 	}
@@ -147,7 +146,6 @@ public class Crafter : MonoBehaviour
 	// Animation Events
 	public void DestroyTable()
 	{
-		Debug.Log("Craft Destroy table");
 		LevelManager.Instance.DestroyTable();
 	}
 
@@ -164,7 +162,6 @@ public class Crafter : MonoBehaviour
 
 	public void ApplyWhiteMask()
 	{
-		Debug.Log("AlphaWhiteMask");
 		GetComponent<Renderer>().material.SetTexture("_MaskTex", whiteMask);
 	}
 

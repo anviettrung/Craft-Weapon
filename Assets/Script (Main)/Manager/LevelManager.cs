@@ -66,6 +66,7 @@ public class LevelManager : Singleton<LevelManager>
 		UIManager.Instance.botUI.gameObject.SetActive(false);
 		UIManager.Instance.midUI.gameObject.SetActive(false);
 		UIManager.Instance.shopUI.gameObject.SetActive(false);
+		UIManager.Instance.SetLabel_Level(curLevelID + 1);
 
 		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
 		trackTable = Instantiate(tablePrefab).GetComponent<TableDestroyer>();
