@@ -52,7 +52,7 @@ MonoBehaviour:
   weaponName: Tachi
   weaponIcon: {fileID: 21300000, guid: fc02008c1dc0c4269be04de4b53f1354, type: 3}
   unlockCoins: 150
-  rewardCoins: 160
+  rewardCoins: 120
   crafter: {fileID: 0}
   onFinishedWeapon:
     m_PersistentCalls:

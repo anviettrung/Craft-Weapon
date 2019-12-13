@@ -28,6 +28,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		//ChangeScene(gameplaySceneName);
 		// LevelManager.Instance.LoadGameData();
+		UserManager.Instance.LoadGameData();
 		LevelManager.Instance.OpenLastestLevel();
 	}
 
@@ -41,5 +42,11 @@ public class GameManager : Singleton<GameManager>
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
 		curSceneName = sceneName;
+	}
+
+	private void OnApplicationQuit()
+	{
+		//LevelManager.Instance.SaveGameData();
+		UserManager.Instance.SaveGameData();
 	}
 }

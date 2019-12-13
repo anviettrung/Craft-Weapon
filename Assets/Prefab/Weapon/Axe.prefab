@@ -52,7 +52,7 @@ MonoBehaviour:
   weaponName: Guitar Axe
   weaponIcon: {fileID: 21300000, guid: 313aea0afd4b745c8bcdeac7922115d5, type: 3}
   unlockCoins: 60
-  rewardCoins: 0
+  rewardCoins: 50
   crafter: {fileID: 0}
   onFinishedWeapon:
     m_PersistentCalls:

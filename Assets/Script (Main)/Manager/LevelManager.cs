@@ -61,6 +61,8 @@ public class LevelManager : Singleton<LevelManager>
 		trackTable = Instantiate(tablePrefab).GetComponent<TableDestroyer>();
 
 		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
+
+		PlayerInput.Instance.crafter = currentWeapon.crafter;
 	}
 
 	public void UnlockLevel(bool status)
@@ -82,6 +84,9 @@ public class LevelManager : Singleton<LevelManager>
 	{
 		levelDatas[x].isFinished = true;
 		lastestLevelID = Mathf.Clamp(curLevelID + 1, 0, levelDatas.Count-1);
+
+		UserManager.Instance.IncCoin(levelDatas[x].weapons.rewardCoins);
+
 		SaveGameData();
 	}
 

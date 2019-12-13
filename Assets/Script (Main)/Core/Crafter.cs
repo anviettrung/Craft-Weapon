@@ -51,28 +51,28 @@ public class Crafter : MonoBehaviour
 		StartCoroutine(ChangeState(curStateID, true));
 	}
 
-	protected void Update()
+	public void UpdateTouch(Vector2 touchPosition, bool isTouchDown, bool isTouching)
 	{
 		if (isSaving)
 			return;
 
 		if (isChangingState) {
-			if (!isLockInput && Input.GetMouseButtonDown(0))
+			if (!isLockInput && isTouchDown)
 				isChangingState = false;
-		} else if (!isLockInput &&  Input.GetMouseButton(0)) {
-			UpdateTool(true);
-			drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(Input.mousePosition));
+		} else if (!isLockInput &&  isTouching) {
+			UpdateTool(true, touchPosition);
+			drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(touchPosition));
 		} else {
-			UpdateTool(false);
+			UpdateTool(false, touchPosition);
 		}
 	}
 
-	void UpdateTool(bool isOn)
+	protected void UpdateTool(bool isOn, Vector2 touchPosition)
 	{
 		if (ToolManager.Instance.GetActiveTool() == null)
 			return;
 
-		ToolManager.Instance.GetActiveTool().UpdatePosition(Input.mousePosition);
+		ToolManager.Instance.GetActiveTool().UpdatePosition(touchPosition);
 		ToolManager.Instance.GetActiveTool().SetEffectActive(isOn);
 	}
 

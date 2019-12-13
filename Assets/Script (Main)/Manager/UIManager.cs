@@ -18,6 +18,8 @@ public class UIManager : Singleton<UIManager>
 
 	// Setting UI
 	public RectTransform settingPanel;
+	protected bool isOpenSettingPanel = false;
+	protected bool isVibration;
 
 	// Shop UI
 	public RectTransform shopUI;
@@ -27,6 +29,14 @@ public class UIManager : Singleton<UIManager>
 
 	// Bot UI
 	public Text rewardCoinLabel;
+
+	//----------------------------------------------------------
+	// General Settings
+	//----------------------------------------------------------
+	private void Awake()
+	{
+		isOpenSettingPanel = settingPanel.gameObject.active;
+	}
 
 	//----------------------------------------------------------
 	// Top UI function
@@ -46,14 +56,27 @@ public class UIManager : Singleton<UIManager>
 		coinLabel.text = x.ToString();
 	}
 
+	public void SwitchSettingUIPanelActive()
+	{
+		isOpenSettingPanel = !isOpenSettingPanel;
+		if (isOpenSettingPanel)
+			OpenSettingUI();
+		else
+			CloseSettingUI();
+	}
+
 	public void OpenSettingUI()
 	{
-		
+		isOpenSettingPanel = true;
+		settingPanel.gameObject.SetActive(true);
+		PlayerInput.Instance.PauseGame();
 	}
 
 	public void CloseSettingUI()
 	{
-
+		isOpenSettingPanel = false;
+		settingPanel.gameObject.SetActive(false);
+		PlayerInput.Instance.UnpauseGame();
 	}
 
 	//----------------------------------------------------------
@@ -84,7 +107,7 @@ public class UIManager : Singleton<UIManager>
 
 
 	//----------------------------------------------------------
-	// 
+	// Bot UI functions
 	//----------------------------------------------------------
 	public void SetLabel_RewardCoin(int x)
 	{
@@ -93,7 +116,54 @@ public class UIManager : Singleton<UIManager>
 
 	public void WatchADs()
 	{
-
+		Debug.Log("Watch Ads");
 	}
 
+
+	//----------------------------------------------------------
+	// Setting UI functions
+	//----------------------------------------------------------
+	public void RemoveADs()
+	{
+		Debug.Log("Remove ADs function");
+	}
+
+	public void RestorePurchase()
+	{
+		Debug.Log("Restore Purchase function");
+	}
+
+	public void SwitchVibrationActive()
+	{
+		isVibration = !isVibration;
+
+		if (isVibration)
+			TurnOnVibration();
+		else
+			TurnOffVibration();
+	}
+
+	public void TurnOnVibration()
+	{
+		isVibration = true;
+
+		Debug.Log("Vibration On");
+	}
+
+	public void TurnOffVibration()
+	{
+		isVibration = false;
+
+		Debug.Log("Vibration Off");
+	}
+
+	public void Share()
+	{
+		Debug.Log("Share function");
+	}
+
+	public void Rate()
+	{
+		Debug.Log("Rate function");
+	}
 }

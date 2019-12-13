@@ -52,7 +52,7 @@ MonoBehaviour:
   weaponName: Great Sword
   weaponIcon: {fileID: 21300000, guid: f7f5f4d2ec8db4eee879e486e5751730, type: 3}
   unlockCoins: 120
-  rewardCoins: 0
+  rewardCoins: 100
   crafter: {fileID: 0}
   onFinishedWeapon:
     m_PersistentCalls:
