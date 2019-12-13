@@ -7,28 +7,60 @@ using UnityEngine;
 public class UserManager : Singleton<UserManager>
 {
 
-	public int coins;
+	protected int coins = 0;
+	public int Coins {
+		get {
+			return coins;
+		}
+
+		set {
+			coins = value;
+			UpdateCoinLabel();
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// *
+	// * General functions
+	// *
+	// ---------------------------------------------------------------------
+	private void Start()
+	{
+		UpdateCoinLabel();
+	}
+
+	// ---------------------------------------------------------------------
+	// *
+	// * Script main function
+	// *
+	// ---------------------------------------------------------------------
+
+	public void Buy(Weapon buyingWeapon)
+	{
+		if (buyingWeapon.unlockCoins > Coins) {
+			Debug.Log("Don't have enough coin. Open purchase or watch Ads panel");
+		} else {
+			Debug.Log("Pop Up \"Are you sure?\" panel");
+			Coins -= buyingWeapon.unlockCoins;
+			LevelManager.Instance.UnlockLevel(buyingWeapon.weaponName);
+		}
+	}
 
 	public void SetCoin(int x)
 	{
-		coins = x;
+		Coins = x;
 		UpdateCoinLabel();
 	}
 
-	public void IncCoin(int x)
+	public void IncreaseCoin(int x)
 	{
-		coins += x;
-		UpdateCoinLabel();
-	}
-
-	private void Update()
-	{
+		Coins += x;
 		UpdateCoinLabel();
 	}
 
 	void UpdateCoinLabel()
 	{
-		UIManager.Instance.SetLabel_Coin(coins);
+		UIManager.Instance.SetLabel_Coin(Coins);
 	}
 
 	// ---------------------------------------------------------------------
@@ -38,7 +70,7 @@ public class UserManager : Singleton<UserManager>
 	// ---------------------------------------------------------------------
 	public void ClearData()
 	{
-		coins = 0;
+		Coins = 0;
 	}
 
 
@@ -46,7 +78,7 @@ public class UserManager : Singleton<UserManager>
 	{
 		UserData save = new UserData();
 
-		save.coins = coins;
+		save.coins = Coins;
 
 		return save;
 	}
@@ -76,7 +108,7 @@ public class UserManager : Singleton<UserManager>
 
 			// ---------------------------------------------------------------------
 			// Load
-			coins = save.coins;
+			Coins = save.coins;
 
 			// ---------------------------------------------------------------------
 		}

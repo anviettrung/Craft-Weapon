@@ -28,7 +28,10 @@ public class ShopItemCell : MonoBehaviour
 	public void Unlock()
 	{
 		if (trackData == null) return;
-		trackData.Unlock(true);
+		//trackData.Unlock(true);
+
+		UserManager.Instance.Buy(trackData.weapons);
+
 		UpdateUI();
 	}
 

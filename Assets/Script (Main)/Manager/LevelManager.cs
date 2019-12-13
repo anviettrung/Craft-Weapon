@@ -16,6 +16,18 @@ public class LevelManager : Singleton<LevelManager>
 	protected TableDestroyer trackTable;
 
 	// ---------------------------------------------------------------------
+	public int SearchingLevelIndexOfWeaponName(string weaponName)
+	{
+		for (int i = 0; i < levelDatas.Count; i++) {
+
+			if (levelDatas[i].weapons.weaponName == weaponName) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
 	public void OpenLastestLevel()
 	{
 		OpenLevel(lastestLevelID);
@@ -23,15 +35,13 @@ public class LevelManager : Singleton<LevelManager>
 
 	public void OpenLevel(string weaponName)
 	{
-		for (int i = 0; i < levelDatas.Count; i++) {
-
-			if (levelDatas[i].weapons.weaponName == weaponName) {
-				OpenLevel(i);
-				return;
-			}
+		int res = SearchingLevelIndexOfWeaponName(weaponName);
+		if (res == -1) {
+			Debug.Log("Can't find weapon name: " + weaponName);
+			return;
 		}
 
-		Debug.Log("Can't find weapon name: " + weaponName);
+		OpenLevel(res);
 	}
 
 	public void OpenNextLevel()
@@ -65,15 +75,26 @@ public class LevelManager : Singleton<LevelManager>
 		PlayerInput.Instance.crafter = currentWeapon.crafter;
 	}
 
-	public void UnlockLevel(bool status)
+	public void UnlockLevel()
 	{
-		UnlockLevel(curLevelID, status);
+		UnlockLevel(curLevelID);
 	}
 
-	public void UnlockLevel(int x, bool status)
+	public void UnlockLevel(string weaponName)
+	{
+		int res = SearchingLevelIndexOfWeaponName(weaponName);
+		if (res == -1) {
+			Debug.Log("Can't find weapon name: " + weaponName);
+			return;
+		}
+		UnlockLevel(res);
+	}
+
+	public void UnlockLevel(int x)
 	{
 		levelDatas[x].isUnlock = true;
 	}
+
 
 	public void FinishLevel()
 	{
@@ -85,7 +106,7 @@ public class LevelManager : Singleton<LevelManager>
 		levelDatas[x].isFinished = true;
 		lastestLevelID = Mathf.Clamp(curLevelID + 1, 0, levelDatas.Count-1);
 
-		UserManager.Instance.IncCoin(levelDatas[x].weapons.rewardCoins);
+		UserManager.Instance.IncreaseCoin(levelDatas[x].weapons.rewardCoins);
 
 		SaveGameData();
 	}

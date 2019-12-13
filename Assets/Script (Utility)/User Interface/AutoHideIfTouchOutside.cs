@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class AutoHideIfTouchOutside : MonoBehaviour
 {
 	public UnityEvent onHide = new UnityEvent();
+	// If user touch on these UI, script will act like user touch on this UI
+	public List<GameObject> dontIgnoreUIs;
 
 	private bool IsPointerOverUIObject()
 	{
@@ -18,6 +20,11 @@ public class AutoHideIfTouchOutside : MonoBehaviour
 		foreach (RaycastResult res in results) {
 			if (res.gameObject == gameObject) {
 				return true;
+			}
+
+			for (int i = 0; i < dontIgnoreUIs.Count; i++) {
+				if (res.gameObject == dontIgnoreUIs[i])
+					return true;
 			}
 		}
 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6163679869650262181}
   - component: {fileID: 1260660724}
   - component: {fileID: 1260660725}
+  - component: {fileID: 1573094320}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -79,7 +80,8 @@ MonoBehaviour:
   curLevelID: 0
   lastestLevelID: 0
   currentWeapon: {fileID: 0}
-  tablePrefab: {fileID: 0}
+  tablePrefab: {fileID: 6153470107380600588, guid: 9f2c8b26d29a04327b44c09ff537fc7d,
+    type: 3}
 --- !u!114 &6163679869650262180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,4 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19f97eaecb7e4b8ca622af8737989e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: 0
+--- !u!114 &1573094320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163679869650262171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ce720c0cedf4000987977386a35e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crafter: {fileID: 0}

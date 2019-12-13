@@ -17,18 +17,20 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
-		// Active these lines of code will RESET GAME DATA
-		LevelManager.Instance.SaveGameData();
-
-		// ------------------------------------------------
 		OnPreload();
 	}
 
 	public void OnPreload()
 	{
 		//ChangeScene(gameplaySceneName);
+
+		// ------------------------------------------------
+		// Load Game
+		// ------------------------------------------------
 		// LevelManager.Instance.LoadGameData();
-		UserManager.Instance.LoadGameData();
+		// UserManager.Instance.LoadGameData();
+		// ------------------------------------------------
+
 		LevelManager.Instance.OpenLastestLevel();
 	}
 
@@ -46,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
 	private void OnApplicationQuit()
 	{
-		//LevelManager.Instance.SaveGameData();
+		LevelManager.Instance.SaveGameData();
 		UserManager.Instance.SaveGameData();
 	}
 }
