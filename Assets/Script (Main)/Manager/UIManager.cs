@@ -19,7 +19,6 @@ public class UIManager : Singleton<UIManager>
 	// Setting UI
 	public RectTransform settingPanel;
 	protected bool isOpenSettingPanel = false;
-	protected bool isVibration;
 
 	// Shop UI
 	public RectTransform shopUI;
@@ -135,9 +134,9 @@ public class UIManager : Singleton<UIManager>
 
 	public void SwitchVibrationActive()
 	{
-		isVibration = !isVibration;
+		PlayerInput.Instance.isVibration = !PlayerInput.Instance.isVibration;
 
-		if (isVibration)
+		if (PlayerInput.Instance.isVibration)
 			TurnOnVibration();
 		else
 			TurnOffVibration();
@@ -145,14 +144,14 @@ public class UIManager : Singleton<UIManager>
 
 	public void TurnOnVibration()
 	{
-		isVibration = true;
+		PlayerInput.Instance.isVibration = true;
 
 		Debug.Log("Vibration On");
 	}
 
 	public void TurnOffVibration()
 	{
-		isVibration = false;
+		PlayerInput.Instance.isVibration = false;
 
 		Debug.Log("Vibration Off");
 	}
