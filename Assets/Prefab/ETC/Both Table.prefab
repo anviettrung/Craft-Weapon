@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2243295804119524545}
   - component: {fileID: 808399829}
+  - component: {fileID: 1784608760337862266}
   m_Layer: 0
   m_Name: Both Table
   m_TagString: Untagged
@@ -106,7 +107,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2864483649496517005}
+  - {fileID: 482004402643163847}
   - {fileID: 3114478739548510894}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -130,6 +131,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1784608760337862266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964324191190299526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f00bf619a1642c1bad9e0b34e5c2cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2864483649496516865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2c8b26d29a04327b44c09ff537fc7d, type: 3}
---- !u!4 &2864483649496517005 stripped
+--- !u!4 &482004402643163847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2409668520362103750, guid: 9f2c8b26d29a04327b44c09ff537fc7d,
     type: 3}

@@ -62,7 +62,7 @@ public class Crafter : MonoBehaviour
 				isChangingState = false;
 		} else if (!isLockInput &&  isTouching) {
 			UpdateTool(true, touchPosition);
-			Handheld.Vibrate();
+			PlayerInput.Instance.Vibrate();
 			drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(touchPosition));
 		} else {
 			UpdateTool(false, touchPosition);

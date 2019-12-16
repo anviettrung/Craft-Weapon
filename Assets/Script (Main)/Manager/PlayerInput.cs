@@ -7,6 +7,7 @@ public class PlayerInput : Singleton<PlayerInput>
 	public Crafter crafter;
 
 	protected bool isPauseGame;
+	protected bool isVibrate;
 
 	public void PauseGame()
 	{
@@ -33,4 +34,9 @@ public class PlayerInput : Singleton<PlayerInput>
 		);
 	}
 
+	public void Vibrate()
+	{
+		if (isVibrate)
+			Handheld.Vibrate();
+	}
 }
