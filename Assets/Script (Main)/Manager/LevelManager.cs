@@ -13,7 +13,8 @@ public class LevelManager : Singleton<LevelManager>
 
 	public Weapon currentWeapon;
 	public GameObject tablePrefab;
-	protected TableDestroyer trackTable;
+	protected GameObject trackBothTable;
+	protected TableDestroyer trackTableDestroyer;
 
 	// ---------------------------------------------------------------------
 	public int SearchingLevelIndexOfWeaponName(string weaponName)
@@ -58,6 +59,10 @@ public class LevelManager : Singleton<LevelManager>
 
 		curLevelID = x;
 
+		if (trackBothTable != null) {
+			Destroy(trackBothTable);
+		}
+
 		if (currentWeapon != null) {
 			currentWeapon.onFinishedWeapon.RemoveListener(FinishLevel);
 			Destroy(currentWeapon.gameObject);
@@ -68,9 +73,11 @@ public class LevelManager : Singleton<LevelManager>
 		UIManager.Instance.shopUI.gameObject.SetActive(false);
 		UIManager.Instance.SetLabel_Level(curLevelID + 1);
 
-		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
-		trackTable = Instantiate(tablePrefab).GetComponent<TableDestroyer>();
+		trackBothTable = Instantiate(tablePrefab);
+		trackTableDestroyer = trackBothTable.GetComponentInChildren<TableDestroyer>();
 
+		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
+		currentWeapon.GetComponent<FollowObject>().target = trackTableDestroyer.gameObject;
 		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
 
 		PlayerInput.Instance.crafter = currentWeapon.crafter;
@@ -115,7 +122,7 @@ public class LevelManager : Singleton<LevelManager>
 	public void DestroyTable()
 	{
 		Debug.Log("LEVELMANAGER destroy table");
-		trackTable.Explosion();
+		trackTableDestroyer.Explosion();
 	}
 
 
