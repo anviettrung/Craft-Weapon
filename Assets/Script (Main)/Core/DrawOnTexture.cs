@@ -91,7 +91,7 @@ public class DrawOnTexture : MonoBehaviour
 		}
 
 		isSaving = true;
-		Invoke("SaveTexture", 0.05f);
+		Invoke("SaveTexture", 0.02f);
 	}
 
 	//Sets the base material with a our canvas texture, then removes all our brushes

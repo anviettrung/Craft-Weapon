@@ -13,7 +13,7 @@ public class LevelManager : Singleton<LevelManager>
 
 	public Weapon currentWeapon;
 	public GameObject tablePrefab;
-	protected GameObject trackBothTable;
+	protected Table trackBothTable;
 	protected TableDestroyer trackTableDestroyer;
 
 	// ---------------------------------------------------------------------
@@ -60,7 +60,7 @@ public class LevelManager : Singleton<LevelManager>
 		curLevelID = x;
 
 		if (trackBothTable != null) {
-			Destroy(trackBothTable);
+			Destroy(trackBothTable.gameObject);
 		}
 
 		if (currentWeapon != null) {
@@ -73,12 +73,14 @@ public class LevelManager : Singleton<LevelManager>
 		UIManager.Instance.shopUI.gameObject.SetActive(false);
 		UIManager.Instance.SetLabel_Level(curLevelID + 1);
 
-		trackBothTable = Instantiate(tablePrefab);
+		trackBothTable = Instantiate(tablePrefab).GetComponent<Table>();
 		trackTableDestroyer = trackBothTable.GetComponentInChildren<TableDestroyer>();
 
 		currentWeapon = Instantiate(levelDatas[x].weapons.gameObject).GetComponent<Weapon>();
 		currentWeapon.GetComponent<FollowObject>().target = trackTableDestroyer.gameObject;
 		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
+
+		trackBothTable.ToolFollowTable(ToolManager.Instance.GetTool(currentWeapon.crafter.states[0].toolName));
 
 		PlayerInput.Instance.crafter = currentWeapon.crafter;
 	}

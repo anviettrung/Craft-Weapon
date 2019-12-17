@@ -24,7 +24,5 @@ public class Weapon : MonoBehaviour
 	{
 		UIManager.Instance.botUI.gameObject.SetActive(true);
 		UIManager.Instance.midUI.gameObject.SetActive(true);
-
-		Debug.Log("WON");
 	}
 }
