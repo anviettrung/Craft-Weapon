@@ -16,7 +16,8 @@ public class ToolManager : Singleton<ToolManager>
 	{
 		if (name == "") {
 			// turn off
-			activeTool.gameObject.SetActive(false);
+			//activeTool.gameObject.SetActive(false);
+			activeTool.TriggerGoOutAnimation();
 			activeTool = null;
 
 			return;
@@ -26,9 +27,12 @@ public class ToolManager : Singleton<ToolManager>
 			if (tool.toolName == name) {
 
 				if (activeTool != null)
-					activeTool.gameObject.SetActive(false);
+					//activeTool.gameObject.SetActive(false);
+					activeTool.TriggerGoOutAnimation();
+
 				activeTool = tool;
 				activeTool.gameObject.SetActive(true);
+				activeTool.TriggerGoInAnimation();
 
 				return;
 			}

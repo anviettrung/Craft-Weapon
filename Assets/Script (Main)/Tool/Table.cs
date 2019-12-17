@@ -14,7 +14,7 @@ public class Table : MonoBehaviour
 
 	public void OnTableFinishedIn()
 	{
-		Destroy(t.gameObject.GetComponent<FollowObject>());
+		//t.followScript.target = null;
 		PlayerInput.Instance.UnpauseGame();
 
 	}
@@ -22,7 +22,7 @@ public class Table : MonoBehaviour
 	public void ToolFollowTable(Tool target)
 	{
 		t = target;
-		t.gameObject.AddComponent<FollowObject>().target = toolGoInPosition;
+		//t.followScript.target = toolGoInPosition;
 	}
 
 }

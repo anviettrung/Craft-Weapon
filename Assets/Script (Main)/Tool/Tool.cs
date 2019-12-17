@@ -13,6 +13,11 @@ public class Tool : MonoBehaviour
 	public Vector3 toolToTouchOffset;
 	public Vector3 affectAreaToToolOffset;
 
+	public GameObject toolDragger;
+
+	public FollowObject followScript;
+	public Animator anim;
+
 	private void Awake()
 	{
 		particleController = GetComponent<ParticleController>();
@@ -41,5 +46,36 @@ public class Tool : MonoBehaviour
 		} else {
 			particleController.StopParticleEffect();
 		}
+	}
+
+	//public void Follow()
+	//{
+	//	followScript.target = toolDragger;
+	//}
+
+	//public void ReleaseFollowing()
+	//{
+	//	followScript.target = null;
+	//}
+
+	public void DeactiveTool()
+	{
+		gameObject.SetActive(false);
+	}
+
+	public void DeactiveAnim()
+	{
+	}
+
+	public void TriggerGoInAnimation()
+	{
+		anim.SetTrigger("Go In");
+	}
+
+	public void TriggerGoOutAnimation()
+	{
+
+		anim.SetTrigger("Go Out");
+
 	}
 }

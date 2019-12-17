@@ -5035,11 +5035,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648b9ef4eb2b64f978acf487b14fc21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolName: Lava Bottle
   particleController: {fileID: 0}
   initTransform: {fileID: 0}
   firstTouchOffset: {x: 0, y: 0, z: 0}
   toolToTouchOffset: {x: -200, y: 200, z: 45}
   affectAreaToToolOffset: {x: 0, y: 0, z: 0}
+  toolDragger: {fileID: 0}
+  followScript: {fileID: 0}
+  anim: {fileID: 0}
   lavaStream: {fileID: 4170134953827643943}
 --- !u!114 &4170134954000431585
 MonoBehaviour:

@@ -27,7 +27,8 @@ public class DrawOnTexture : MonoBehaviour
 
 
 	// Control script flow
-	public Vector2Int drawPosition;
+	public Vector2Int drawBoxUpperLeft;
+	public Vector2Int drawBoxResize;
 	public bool isSaving = false;
 
 	// Ref
@@ -79,16 +80,51 @@ public class DrawOnTexture : MonoBehaviour
 			return;
 
 		Vector2 pixelUV = hit.textureCoord;
+		int startX = (int)(pixelUV.x * dynammicMaskTexture.width - brushWidth * 0.5f);
+		int startY = (int)(pixelUV.y * dynammicMaskTexture.height - brushHeight * 0.5f);
+		int brWidthResize = brushWidth;
+		int brHeightResize = brushHeight;
 
-		drawPosition = new Vector2Int(
-			(int)(pixelUV.x * dynammicMaskTexture.width - brushWidth * 0.5f),
-			(int)(pixelUV.y * dynammicMaskTexture.height - brushHeight * 0.5f)
+		if (startX < 0) {
+			brWidthResize += startX;
+			startX = 0; 
+		}
+
+		if (startY < 0) {
+			brHeightResize += startY;
+			startY = 0;
+		}
+
+		if (startX + brWidthResize > dynammicMaskTexture.width) {
+			brWidthResize = dynammicMaskTexture.width - startX;
+		}
+
+		if (startY + brHeightResize > dynammicMaskTexture.height) {
+			brHeightResize = dynammicMaskTexture.height - startY;
+		}
+
+		drawBoxUpperLeft = new Vector2Int(
+			startX,
+			startY
 		);
 
-		Color[] curTexViewport = dynammicMaskTexture.GetPixels(drawPosition.x, drawPosition.y, brushWidth, brushHeight);
-		for (int i = 0; i < brushPixels.Length; i++) {
+		drawBoxResize = new Vector2Int(
+			brWidthResize,
+			brHeightResize
+		);
+
+		
+
+		Color[] curTexViewport = dynammicMaskTexture.GetPixels(
+			drawBoxUpperLeft.x, drawBoxUpperLeft.y, 
+			drawBoxResize.x, drawBoxResize.y
+		);
+
+		for (int i = 0; i < curTexViewport.Length; i++) {
 			colors[i] = brushPixels[i] + curTexViewport[i];
 		}
+
+
 
 		isSaving = true;
 		Invoke("SaveTexture", 0.02f);
@@ -97,7 +133,12 @@ public class DrawOnTexture : MonoBehaviour
 	//Sets the base material with a our canvas texture, then removes all our brushes
 	void SaveTexture()
 	{
-		dynammicMaskTexture.SetPixels(drawPosition.x, drawPosition.y, brushWidth, brushHeight, colors);
+		dynammicMaskTexture.SetPixels(
+			drawBoxUpperLeft.x, drawBoxUpperLeft.y,
+			drawBoxResize.x, drawBoxResize.y, 
+			colors
+		);
+
 		dynammicMaskTexture.Apply();
 		OnSavingTexture.Invoke();
 		isSaving = false;

@@ -88,6 +88,9 @@ public class UIManager : Singleton<UIManager>
 
 		botUI.gameObject.SetActive(false);
 		midUI.gameObject.SetActive(false);
+		levelLabel.gameObject.SetActive(false);
+		processLabel.gameObject.SetActive(false);
+		settingButton.gameObject.SetActive(false);
 
 		shop.UpdateShop(LevelManager.Instance.levelDatas);
 
@@ -102,6 +105,9 @@ public class UIManager : Singleton<UIManager>
 
 		botUI.gameObject.SetActive(true);
 		midUI.gameObject.SetActive(true);
+		levelLabel.gameObject.SetActive(true);
+		processLabel.gameObject.SetActive(true);
+		settingButton.gameObject.SetActive(true);
 	}
 
 
