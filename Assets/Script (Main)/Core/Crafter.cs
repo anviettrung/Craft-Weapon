@@ -61,21 +61,23 @@ public class Crafter : MonoBehaviour
 			if (!isLockInput && isTouchDown)
 				isChangingState = false;
 		} else if (!isLockInput &&  isTouching) {
-			UpdateTool(true, touchPosition);
-			PlayerInput.Instance.Vibrate();
-			drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(touchPosition));
+			if (UpdateTool(true, touchPosition)) {
+				PlayerInput.Instance.Vibrate();
+				drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(touchPosition));
+			}
 		} else {
 			UpdateTool(false, touchPosition);
 		}
 	}
 
-	protected void UpdateTool(bool isOn, Vector2 touchPosition)
+	protected bool UpdateTool(bool isOnEffect, Vector2 touchPosition)
 	{
 		if (ToolManager.Instance.GetActiveTool() == null)
-			return;
+			return false;
 
-		ToolManager.Instance.GetActiveTool().UpdatePosition(touchPosition);
-		ToolManager.Instance.GetActiveTool().SetEffectActive(isOn);
+		ToolManager.Instance.GetActiveTool().SetEffectActive(isOnEffect);
+
+		return ToolManager.Instance.GetActiveTool().UpdatePosition(touchPosition);
 	}
 
 	public IEnumerator ChangeState(int nextStateIndex, bool firstChange)
@@ -90,7 +92,7 @@ public class Crafter : MonoBehaviour
 			weaponController.onFinishedWeapon.Invoke();
 			weaponController.onFinishedWeapon.RemoveAllListeners();
 
-			ToolManager.Instance.GetActiveTool().gameObject.SetActive(false);
+			ToolManager.Instance.ChangeTool("Empty");
 
 			yield break;
 		}

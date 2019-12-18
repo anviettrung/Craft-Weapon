@@ -84,7 +84,7 @@ public class UIManager : Singleton<UIManager>
 	public void OpenShop()
 	{
 		LevelManager.Instance.currentWeapon.gameObject.SetActive(false);
-		ToolManager.Instance.GetActiveTool().gameObject.SetActive(false);
+		ToolManager.Instance.HideActiveTool();
 
 		botUI.gameObject.SetActive(false);
 		midUI.gameObject.SetActive(false);

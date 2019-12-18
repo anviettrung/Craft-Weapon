@@ -6,6 +6,11 @@ public class LavaBottle : Tool
 {
 	public GameObject lavaStream;
 
+	public void OnDisable()
+	{
+		lavaStream.SetActive(false);
+	}
+
 	public override void SetEffectActive(bool isEnable)
 	{
 		base.SetEffectActive(isEnable);

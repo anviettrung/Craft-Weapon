@@ -13,52 +13,49 @@ public class Tool : MonoBehaviour
 	public Vector3 toolToTouchOffset;
 	public Vector3 affectAreaToToolOffset;
 
-	public GameObject toolDragger;
-
-	public FollowObject followScript;
 	public Animator anim;
+
+	protected bool isAnimating = false;
 
 	private void Awake()
 	{
 		particleController = GetComponent<ParticleController>();
 	}
 
-	protected void OnEnable()
+	protected virtual void OnEnable()
 	{
 		transform.position = initTransform.position;
 	}
 
-	public void UpdatePosition(Vector3 touchInputPosition)
+	public bool UpdatePosition(Vector3 touchInputPosition)
 	{
-		Vector3 newPos = Camera.main.ScreenToWorldPoint(touchInputPosition + toolToTouchOffset);
-		transform.position = newPos;
+		if (!isAnimating) {
+			Vector3 newPos = Camera.main.ScreenToWorldPoint(touchInputPosition + toolToTouchOffset);
+			transform.position = newPos;
+		}
+
+		return !isAnimating;
 	}
 
 	public Vector3 GetAffectPosition(Vector3 touchInputPosition)
 	{
-		return touchInputPosition + toolToTouchOffset + affectAreaToToolOffset;
+		//if (!isAnimating)
+			return touchInputPosition + toolToTouchOffset + affectAreaToToolOffset;
+
 	}
 
 	public virtual void SetEffectActive(bool isEnable)
 	{
-		if (isEnable) {
-			particleController.PlayParticleEffect();
-		} else {
-			particleController.StopParticleEffect();
+		if (!isAnimating) {
+			if (isEnable) {
+				particleController.PlayParticleEffect();
+			} else {
+				particleController.StopParticleEffect();
+			}
 		}
 	}
 
-	//public void Follow()
-	//{
-	//	followScript.target = toolDragger;
-	//}
-
-	//public void ReleaseFollowing()
-	//{
-	//	followScript.target = null;
-	//}
-
-	public void DeactiveTool()
+	public virtual void DeactiveTool()
 	{
 		gameObject.SetActive(false);
 	}
@@ -69,13 +66,45 @@ public class Tool : MonoBehaviour
 
 	public void TriggerGoInAnimation()
 	{
-		anim.SetTrigger("Go In");
+		StartCoroutine(OnStart());
 	}
 
 	public void TriggerGoOutAnimation()
 	{
+		StartCoroutine(OnEnd());
+	}
 
-		anim.SetTrigger("Go Out");
+	public AnimationClip startAnimName;
+	public AnimationClip endingAnimName;
 
+	public virtual IEnumerator OnStart()
+	{
+		if (startAnimName != null) {
+
+			isAnimating = true;
+
+			anim.Play(startAnimName.name);
+			yield return new WaitForSeconds(startAnimName.length);
+
+			isAnimating = false;
+
+		}
+
+		yield break;
+	}
+
+	public virtual IEnumerator OnEnd()
+	{
+		if (endingAnimName != null) {
+
+			isAnimating = true;
+
+			anim.Play(endingAnimName.name);
+			yield return new WaitForSeconds(endingAnimName.length);
+
+			isAnimating = false;
+		}
+
+		yield break;
 	}
 }

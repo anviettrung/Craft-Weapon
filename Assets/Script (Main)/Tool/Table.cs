@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-	public GameObject toolGoInPosition;
-	protected Tool t;
 
 	public void OnTableIn()
 	{
@@ -14,15 +12,7 @@ public class Table : MonoBehaviour
 
 	public void OnTableFinishedIn()
 	{
-		//t.followScript.target = null;
 		PlayerInput.Instance.UnpauseGame();
-
-	}
-
-	public void ToolFollowTable(Tool target)
-	{
-		t = target;
-		//t.followScript.target = toolGoInPosition;
 	}
 
 }

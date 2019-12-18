@@ -7,6 +7,22 @@ public class ToolManager : Singleton<ToolManager>
 	public List<Tool> tools;
 	protected Tool activeTool;
 
+	public void HideActiveTool()
+	{
+		if (activeTool == null)
+			return;
+
+		activeTool.gameObject.SetActive(false);
+	}
+
+	public void ShowActiveTool()
+	{
+		if (activeTool == null)
+			return;
+
+		activeTool.gameObject.SetActive(true);
+	}
+
 	public Tool GetActiveTool()
 	{
 		return activeTool;
@@ -14,7 +30,7 @@ public class ToolManager : Singleton<ToolManager>
 
 	public void ChangeTool(string name)
 	{
-		if (name == "") {
+		if (name == "Empty") {
 			// turn off
 			//activeTool.gameObject.SetActive(false);
 			activeTool.TriggerGoOutAnimation();

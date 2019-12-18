@@ -8,8 +8,12 @@ public class TableDestroyer : MonoBehaviour
 	public float delayDestroyTime;
 	public List<GameObject> frags;
 
+	public Material cloneMat;
+
 	private void Awake()
 	{
+		cloneMat = new Material(explodable.GetComponent<Renderer>().material);
+		explodable.GetComponent<Renderer>().material = cloneMat;
 		explodable.fragmentInEditor();
 	}
 
@@ -23,7 +27,14 @@ public class TableDestroyer : MonoBehaviour
 
 	protected IEnumerator DestroyFragmentAfterTime(float t)
 	{
-		yield return new WaitForSeconds(t);
+		float elapsed = 0;
+		Renderer rend = frags[0].GetComponent<Renderer>();
+		while (elapsed < t) {
+			elapsed += Time.deltaTime;
+			rend.sharedMaterial.SetFloat("_Transparency", (t-elapsed) / t);
+			yield return new WaitForEndOfFrame();
+		}
+
  		Destroy(gameObject);
 	}
 
@@ -39,4 +50,5 @@ public class TableDestroyer : MonoBehaviour
 
 		StartCoroutine(DestroyFragmentAfterTime(delayDestroyTime));
 	}
+
 }

@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f00bf619a1642c1bad9e0b34e5c2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolGoInPosition: {fileID: 6481890991502029840}
 --- !u!1 &6481890991502029840
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +240,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566093261098661656, guid: 9f2c8b26d29a04327b44c09ff537fc7d,
+        type: 3}
+      propertyPath: delayDestroyTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2c8b26d29a04327b44c09ff537fc7d, type: 3}

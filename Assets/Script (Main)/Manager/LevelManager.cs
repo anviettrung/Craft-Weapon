@@ -80,8 +80,6 @@ public class LevelManager : Singleton<LevelManager>
 		currentWeapon.GetComponent<FollowObject>().target = trackTableDestroyer.gameObject;
 		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
 
-		trackBothTable.ToolFollowTable(ToolManager.Instance.GetTool(currentWeapon.crafter.states[0].toolName));
-
 		PlayerInput.Instance.crafter = currentWeapon.crafter;
 	}
 

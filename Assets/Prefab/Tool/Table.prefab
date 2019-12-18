@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57070c18171a2448bd93ce4df9e8ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 2000
-  radius: 30
-  upliftModifer: 5
+  force: 50
+  radius: 10
+  upliftModifer: 0
 --- !u!1 &6153470107380600588
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,8 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodable: {fileID: 1681111664838593298}
-  delayDestroyTime: 10
+  delayDestroyTime: 1.5
   frags: []
+  cloneMat: {fileID: 0}
 --- !u!1 &6959091707105663469
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 0.1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowRuntimeFragmentation: 0
-  extraPoints: 10
+  extraPoints: 80
   subshatterSteps: 0
   fragmentLayer: Default
   sortingLayerName: Default
