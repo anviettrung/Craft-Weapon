@@ -70,14 +70,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c710c5d68f34189ae5efe98eb0e5f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brushTexture: {fileID: 2800000, guid: 7e800b00877674086b1951491dd043aa, type: 3}
+  brushTexture: {fileID: 2800000, guid: 1c9f702ea55e645f38507e297ae61fd2, type: 3}
   brushScale: 1
   dynammicMaskTexture: {fileID: 0}
   affectedTextureName: _MaskTex
   OnSavingTexture:
     m_PersistentCalls:
       m_Calls: []
-  drawPosition: {x: 0, y: 0}
+  drawBoxUpperLeft: {x: 0, y: 0}
+  drawBoxResize: {x: 0, y: 0}
   isSaving: 0
 --- !u!114 &8077740179489999535
 MonoBehaviour:
@@ -220,3 +221,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30d515e048834b29843cc5e87077d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}

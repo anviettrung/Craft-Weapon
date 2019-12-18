@@ -122,7 +122,7 @@ public class Crafter : MonoBehaviour
 
 		currWpix = 0;
 		for (int i = 0; i < texmap.Length; i++) {
-			if (texmap[i].r > 0)
+			if (texmap[i].a > 0)
 				currWpix++;
 		}
 
@@ -192,7 +192,7 @@ public class State
 		totalPix = texmap.Length;
 		initWPix = 0;
 		for (int i = 0; i < totalPix; i++) {
-			if (texmap[i].r > 0)
+			if (texmap[i].a > 0)
 				initWPix++;
 		}
 		initBPix = totalPix - initWPix;

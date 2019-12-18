@@ -65,7 +65,7 @@
             {
                 fixed4 mainCol = tex2D(_MainTex, i.mainTexCoord);
                 fixed4 subCol  = tex2D(_SubTex, i.subTexCoord);
-                float w = tex2D(_MaskTex, i.mainTexCoord).r;
+                float w = tex2D(_MaskTex, i.mainTexCoord).a;
                 fixed4 col = lerp(mainCol, subCol, w);
                 
                 if (col.a < _CutoutThresh)
