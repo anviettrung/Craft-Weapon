@@ -61,7 +61,7 @@ public class Crafter : MonoBehaviour
 			if (!isLockInput && isTouchDown)
 				isChangingState = false;
 		} else if (!isLockInput &&  isTouching) {
-			if (UpdateTool(true, deltaTouchPosition)) {
+			if (UpdateTool(drawer.isFillAnything, deltaTouchPosition)) {
 				PlayerInput.Instance.Vibrate();
 				drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition());
 			}
@@ -146,7 +146,7 @@ public class Crafter : MonoBehaviour
 		process = (float)(currWpix - states[x].initWPix) / (float)(states[x].initBPix);
 
 		UIManager.Instance.SetLabel_Process(Mathf.RoundToInt(
-			Mathf.Clamp(process / targetProcess * 100, 0.0f, 100.0f)));
+			Mathf.Clamp(process * 100, 0.0f, 100.0f)));
 	}
 
 	// Animation Events

@@ -8,8 +8,15 @@ public class LavaBottle : Tool
 
 	public void OnDisable()
 	{
-		lavaStream.SetActive(false);
+		DisableLavaStream();
 	}
+
+	public void DisableLavaStream()
+	{
+		lavaStream.SetActive(false);
+
+	}
+
 
 	public override void SetEffectActive(bool isEnable)
 	{

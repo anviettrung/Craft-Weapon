@@ -30,6 +30,7 @@ public class DrawOnTexture : MonoBehaviour
 	public Vector2Int drawBoxUpperLeft;
 	public Vector2Int drawBoxResize;
 	public bool isSaving = false;
+	public bool isFillAnything;
 
 	// Ref
 	protected Renderer renderer;
@@ -120,8 +121,11 @@ public class DrawOnTexture : MonoBehaviour
 			drawBoxResize.x, drawBoxResize.y
 		);
 
+		isFillAnything = false;
 		for (int i = 0; i < curTexViewport.Length; i++) {
 			colors[i] = brushPixels[i] + curTexViewport[i];
+			if (curTexViewport[i].a < 1)
+				isFillAnything = true;
 		}
 
 
