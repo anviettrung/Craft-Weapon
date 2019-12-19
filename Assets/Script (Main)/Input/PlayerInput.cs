@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerInput : Singleton<PlayerInput>
 {
+	[HideInInspector]
 	public Crafter crafter;
+	public float sensity = 1;
 
 	protected bool isPauseGame;
 	public bool isVibration;
@@ -27,11 +29,14 @@ public class PlayerInput : Singleton<PlayerInput>
 		if (crafter == null)
 			return;
 
-		crafter.UpdateTouch(
-			Input.mousePosition,
-			Input.GetMouseButtonDown(0),
-			Input.GetMouseButton(0)
-		);
+		if (InputTouchTrail.Instance.IsTouching() && ToolManager.Instance.GetActiveTool() != null) {
+
+			crafter.UpdateTouch(
+				InputTouchTrail.Instance.GetDeltaPosition() * sensity,
+				Input.GetMouseButtonDown(0),
+				Input.GetMouseButton(0)
+			);
+		}
 	}
 
 	public void Vibrate()

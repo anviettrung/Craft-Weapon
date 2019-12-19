@@ -52,7 +52,7 @@ public class Crafter : MonoBehaviour
 		StartCoroutine(ChangeState(curStateID, true));
 	}
 
-	public void UpdateTouch(Vector2 touchPosition, bool isTouchDown, bool isTouching)
+	public void UpdateTouch(Vector2 deltaTouchPosition, bool isTouchDown, bool isTouching)
 	{
 		if (isSaving)
 			return;
@@ -61,23 +61,23 @@ public class Crafter : MonoBehaviour
 			if (!isLockInput && isTouchDown)
 				isChangingState = false;
 		} else if (!isLockInput &&  isTouching) {
-			if (UpdateTool(true, touchPosition)) {
+			if (UpdateTool(true, deltaTouchPosition)) {
 				PlayerInput.Instance.Vibrate();
-				drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition(touchPosition));
+				drawer.DoAction(ToolManager.Instance.GetActiveTool().GetAffectPosition());
 			}
 		} else {
-			UpdateTool(false, touchPosition);
+			UpdateTool(false, deltaTouchPosition);
 		}
 	}
 
-	protected bool UpdateTool(bool isOnEffect, Vector2 touchPosition)
+	protected bool UpdateTool(bool isOnEffect, Vector2 deltaTouchPosition)
 	{
 		if (ToolManager.Instance.GetActiveTool() == null)
 			return false;
 
 		ToolManager.Instance.GetActiveTool().SetEffectActive(isOnEffect);
 
-		return ToolManager.Instance.GetActiveTool().UpdatePosition(touchPosition);
+		return ToolManager.Instance.GetActiveTool().UpdatePosition(deltaTouchPosition);
 	}
 
 	public IEnumerator ChangeState(int nextStateIndex, bool firstChange)

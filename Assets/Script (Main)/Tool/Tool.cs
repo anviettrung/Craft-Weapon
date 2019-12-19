@@ -27,21 +27,22 @@ public class Tool : MonoBehaviour
 		transform.position = initTransform.position;
 	}
 
-	public bool UpdatePosition(Vector3 touchInputPosition)
+	public bool UpdatePosition(Vector3 deltaPosition)
 	{
 		if (!isAnimating) {
-			Vector3 newPos = Camera.main.ScreenToWorldPoint(touchInputPosition + toolToTouchOffset);
-			transform.position = newPos;
+			//Vector3 newPos = Camera.main.ScreenToWorldPoint(deltaPosition + toolToTouchOffset);
+			//transform.position = newPos;
+
+			transform.position += deltaPosition;
 		}
 
 		return !isAnimating;
 	}
 
-	public Vector3 GetAffectPosition(Vector3 touchInputPosition)
+	public Vector3 GetAffectPosition()
 	{
-		//if (!isAnimating)
-			return touchInputPosition + toolToTouchOffset + affectAreaToToolOffset;
-
+		Vector3 affectPosition = Camera.main.WorldToScreenPoint(transform.position);
+		return affectPosition + toolToTouchOffset + affectAreaToToolOffset;
 	}
 
 	public virtual void SetEffectActive(bool isEnable)
