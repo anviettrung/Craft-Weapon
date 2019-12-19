@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 8077740179489999573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30, y: 0, z: 0}
-  m_LocalScale: {x: 17.6187, y: 22.4238, z: 0.80085}
+  m_LocalScale: {x: 15, y: 22, z: 0.80085}
   m_Children:
   - {fileID: 6517130560169806461}
   m_Father: {fileID: 0}
@@ -82,6 +82,7 @@ MonoBehaviour:
   drawBoxUpperLeft: {x: 0, y: 0}
   drawBoxResize: {x: 0, y: 0}
   isSaving: 0
+  isFillAnything: 0
 --- !u!114 &8077740179489999535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +125,7 @@ MonoBehaviour:
     totalPix: 0
     initWPix: 0
     initBPix: 0
-  targetProcess: 0.98
+  targetProcess: 0.995
   OnFinishingLevel:
     m_PersistentCalls:
       m_Calls: []
@@ -245,11 +246,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8077740179489999571}
     m_Modifications:
-    - target: {fileID: 2466246921499673537, guid: 7d31939fa6911408fbb35a9a13adae7d,
-        type: 3}
-      propertyPath: m_Name
-      value: Sparkling effect
-      objectReference: {fileID: 0}
     - target: {fileID: 6496110004178974693, guid: 7d31939fa6911408fbb35a9a13adae7d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -304,6 +300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466246921499673537, guid: 7d31939fa6911408fbb35a9a13adae7d,
+        type: 3}
+      propertyPath: m_Name
+      value: Sparkling effect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d31939fa6911408fbb35a9a13adae7d, type: 3}
