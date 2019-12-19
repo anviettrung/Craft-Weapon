@@ -47,7 +47,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4998,6 +4998,7 @@ GameObject:
   - component: {fileID: 4170134954000431587}
   - component: {fileID: 4170134954000431584}
   - component: {fileID: 4170134954000431585}
+  - component: {fileID: 1195883870}
   m_Layer: 0
   m_Name: Tool_ Lava
   m_TagString: Untagged
@@ -5036,14 +5037,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolName: Lava Bottle
-  particleController: {fileID: 0}
   initTransform: {fileID: 0}
-  firstTouchOffset: {x: 0, y: 0, z: 0}
-  toolToTouchOffset: {x: -200, y: 200, z: 45}
   affectAreaToToolOffset: {x: 0, y: 0, z: 0}
-  toolDragger: {fileID: 0}
-  followScript: {fileID: 0}
-  anim: {fileID: 0}
+  hasRestrictiveBound: 1
+  particleController: {fileID: 4170134954000431585}
+  anim: {fileID: 1195883870}
+  startAnimName: {fileID: 7400000, guid: 561fcd3388cf04c0a8812e73c361c924, type: 2}
+  endingAnimName: {fileID: 7400000, guid: 09e579c6ec8aa47dc82e91cd08710397, type: 2}
   lavaStream: {fileID: 4170134953827643943}
 --- !u!114 &4170134954000431585
 MonoBehaviour:
@@ -5059,3 +5059,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystem:
   - {fileID: 4170134952228348840}
+--- !u!95 &1195883870
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170134954000431598}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 509b45a9b0f044f648b87369ea5225d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

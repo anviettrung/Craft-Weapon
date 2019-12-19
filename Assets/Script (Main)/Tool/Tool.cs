@@ -7,12 +7,12 @@ public class Tool : MonoBehaviour
 {
 	public string toolName;
 
-	public ParticleController particleController;
 	public Transform initTransform;
-	public Vector3 firstTouchOffset;
-	public Vector3 toolToTouchOffset;
 	public Vector3 affectAreaToToolOffset;
 
+	public bool hasRestrictiveBound;
+
+	public ParticleController particleController;
 	public Animator anim;
 
 	protected bool isAnimating = false;
@@ -27,22 +27,38 @@ public class Tool : MonoBehaviour
 		transform.position = initTransform.position;
 	}
 
+
+	protected Vector3 ClampPosition(Vector3 thisPosition)
+	{
+
+		Vector3 viewPos = Camera.main.WorldToViewportPoint(thisPosition);
+
+		viewPos.x = Mathf.Clamp01(viewPos.x);
+		viewPos.y = Mathf.Clamp01(viewPos.y);
+
+		return Camera.main.ViewportToWorldPoint(viewPos);
+	}
+
 	public bool UpdatePosition(Vector3 deltaPosition)
 	{
 		if (!isAnimating) {
 			//Vector3 newPos = Camera.main.ScreenToWorldPoint(deltaPosition + toolToTouchOffset);
 			//transform.position = newPos;
+			Vector3 newPos = transform.position + deltaPosition;
+			transform.position = newPos;
 
-			transform.position += deltaPosition;
+			if (hasRestrictiveBound)
+				transform.position = ClampPosition(transform.position);
 		}
 
 		return !isAnimating;
 	}
 
+
 	public Vector3 GetAffectPosition()
 	{
 		Vector3 affectPosition = Camera.main.WorldToScreenPoint(transform.position);
-		return affectPosition + toolToTouchOffset + affectAreaToToolOffset;
+		return affectPosition + affectAreaToToolOffset;
 	}
 
 	public virtual void SetEffectActive(bool isEnable)

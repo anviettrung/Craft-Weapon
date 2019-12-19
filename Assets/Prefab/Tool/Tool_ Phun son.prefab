@@ -9595,6 +9595,7 @@ GameObject:
   - component: {fileID: 7440044354163253976}
   - component: {fileID: 7440044354163253978}
   - component: {fileID: 7440044354163253979}
+  - component: {fileID: 1470540115}
   m_Layer: 0
   m_Name: Tool_ Phun son
   m_TagString: Untagged
@@ -9633,14 +9634,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolName: Spray
-  particleController: {fileID: 7440044354163253979}
   initTransform: {fileID: 0}
-  firstTouchOffset: {x: 0, y: 0, z: 0}
-  toolToTouchOffset: {x: 0, y: -30, z: 45}
-  affectAreaToToolOffset: {x: -200, y: 230, z: 0}
-  toolDragger: {fileID: 0}
-  followScript: {fileID: 0}
-  anim: {fileID: 0}
+  affectAreaToToolOffset: {x: -160, y: 180, z: 0}
+  hasRestrictiveBound: 1
+  particleController: {fileID: 7440044354163253979}
+  anim: {fileID: 1470540115}
+  startAnimName: {fileID: 7400000, guid: 561fcd3388cf04c0a8812e73c361c924, type: 2}
+  endingAnimName: {fileID: 7400000, guid: 09e579c6ec8aa47dc82e91cd08710397, type: 2}
 --- !u!114 &7440044354163253979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9656,6 +9656,25 @@ MonoBehaviour:
   particleSystem:
   - {fileID: 7440044353532327127}
   - {fileID: 7440044354081411596}
+--- !u!95 &1470540115
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440044354163253973}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 509b45a9b0f044f648b87369ea5225d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7440044354478909067
 GameObject:
   m_ObjectHideFlags: 0
