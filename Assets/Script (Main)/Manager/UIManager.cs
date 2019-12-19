@@ -34,7 +34,7 @@ public class UIManager : Singleton<UIManager>
 	//----------------------------------------------------------
 	private void Awake()
 	{
-		isOpenSettingPanel = settingPanel.gameObject.active;
+		//isOpenSettingPanel = settingPanel.gameObject.active;
 	}
 
 	//----------------------------------------------------------

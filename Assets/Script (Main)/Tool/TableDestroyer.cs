@@ -35,7 +35,7 @@ public class TableDestroyer : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 		}
 
- 		Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 
 	public void Explosion()

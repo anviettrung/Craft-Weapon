@@ -85,6 +85,8 @@ public class Crafter : MonoBehaviour
 		isLockInput = true;
 		isChangingState = true;
 
+		ToolManager.Instance.ChangeTool("Empty");
+
 		if (!firstChange)
 			yield return StartCoroutine(states[curStateID].OnEnd());
 			
@@ -94,14 +96,13 @@ public class Crafter : MonoBehaviour
 			weaponController.onFinishedWeapon.Invoke();
 			weaponController.onFinishedWeapon.RemoveAllListeners();
 
-			ToolManager.Instance.ChangeTool("Empty");
-
 			yield break;
 		}
 
 		curStateID = nextStateIndex;
 
 		ToolManager.Instance.ChangeTool(states[nextStateIndex].toolName);
+
 
 		yield return StartCoroutine(states[nextStateIndex].OnStart());
 		

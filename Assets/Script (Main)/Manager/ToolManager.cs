@@ -33,7 +33,8 @@ public class ToolManager : Singleton<ToolManager>
 		if (name == "Empty") {
 			// turn off
 			//activeTool.gameObject.SetActive(false);
-			activeTool.TriggerGoOutAnimation();
+			if (activeTool != null)
+				activeTool.TriggerGoOutAnimation();
 			activeTool = null;
 
 			return;

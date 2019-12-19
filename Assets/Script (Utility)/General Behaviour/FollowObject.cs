@@ -5,7 +5,6 @@ using UnityEngine;
 public class FollowObject : MonoBehaviour
 {
 	public GameObject target;
-	
 
 	private void Update()
 	{

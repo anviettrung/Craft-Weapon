@@ -71,6 +71,7 @@ public class LevelManager : Singleton<LevelManager>
 		UIManager.Instance.botUI.gameObject.SetActive(false);
 		UIManager.Instance.midUI.gameObject.SetActive(false);
 		UIManager.Instance.shopUI.gameObject.SetActive(false);
+		UIManager.Instance.settingPanel.gameObject.SetActive(false);
 		UIManager.Instance.SetLabel_Level(curLevelID + 1);
 
 		trackBothTable = Instantiate(tablePrefab).GetComponent<Table>();

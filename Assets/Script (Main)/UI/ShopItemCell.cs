@@ -38,6 +38,7 @@ public class ShopItemCell : MonoBehaviour
 	public void PlayThisLevel()
 	{
 		if (trackData == null) return;
+		UIManager.Instance.CloseShop();
 		LevelManager.Instance.OpenLevel(trackData.weapons.weaponName);
 	}
 
