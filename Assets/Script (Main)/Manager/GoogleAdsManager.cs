@@ -19,9 +19,8 @@ public class GoogleAdsManager : MonoBehaviour
 
 	public void UserChoseToWatchAd()
 	{
-		Debug.Log("Watch Ads");
-
 		if (rewardedAd.IsLoaded()) {
+			Debug.Log("Watch Ads");
 			rewardedAd.Show();
 		}
 	}
@@ -36,7 +35,16 @@ public class GoogleAdsManager : MonoBehaviour
 
 	public void RequestRewardAd()
 	{
-		rewardedAd = new RewardedAd("ca-app-pub-3940256099942544/1712485313");
+		string adUnitId;
+		#if UNITY_ANDROID
+		            adUnitId = "ca-app-pub-3940256099942544/5224354917";
+		#elif UNITY_IPHONE
+				adUnitId = "ca-app-pub-3940256099942544/1712485313";
+		#else
+		            adUnitId = "unexpected_platform";
+		#endif
+
+		this.rewardedAd = new RewardedAd(adUnitId);
 		AdRequest request = new AdRequest.Builder().Build();
 		rewardedAd.LoadAd(request);
 
@@ -77,6 +85,6 @@ public class GoogleAdsManager : MonoBehaviour
 			"HandleRewardedAdRewarded event received for "
 						+ amount.ToString() + " " + type);
 
-
+		UserManager.Instance.IncreaseCoin(LevelManager.Instance.currentWeapon.rewardCoins);
 	}
 }

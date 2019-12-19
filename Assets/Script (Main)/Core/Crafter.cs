@@ -87,8 +87,10 @@ public class Crafter : MonoBehaviour
 
 		if (!firstChange)
 			yield return StartCoroutine(states[curStateID].OnEnd());
+			
 
 		if (nextStateIndex >= states.Count) {
+		
 			weaponController.onFinishedWeapon.Invoke();
 			weaponController.onFinishedWeapon.RemoveAllListeners();
 
@@ -99,10 +101,10 @@ public class Crafter : MonoBehaviour
 
 		curStateID = nextStateIndex;
 
-		yield return StartCoroutine(states[nextStateIndex].OnStart());
-
 		ToolManager.Instance.ChangeTool(states[nextStateIndex].toolName);
 
+		yield return StartCoroutine(states[nextStateIndex].OnStart());
+		
 		GetComponent<Renderer>().material = states[nextStateIndex].mat;
 
 		drawer.UpdateMask();
