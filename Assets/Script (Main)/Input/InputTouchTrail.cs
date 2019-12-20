@@ -20,7 +20,6 @@ public class InputTouchTrail : Singleton<InputTouchTrail>
 		if (isTouching)
 			return deltaPosition;
 
-		
 		return Vector2.zero;
 	}
 
