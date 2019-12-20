@@ -7,6 +7,7 @@ public class GoogleAdsManager : MonoBehaviour
 {
 	private RewardedAd rewardedAd;
 	private BannerView bannerView;
+	private InterstitialAd interstitial;
 
 	public void Start()
 	{

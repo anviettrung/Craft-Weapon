@@ -7,6 +7,8 @@ public class PlayerInput : Singleton<PlayerInput>
 	[HideInInspector]
 	public Crafter crafter;
 	public float sensity = 1;
+	public float vibrationCooldown;
+	protected float lastVibeTime = 0;
 
 	protected bool isPauseGame;
 	public bool isVibration;
@@ -41,7 +43,13 @@ public class PlayerInput : Singleton<PlayerInput>
 
 	public void Vibrate()
 	{
-		if (isVibration)
-			Handheld.Vibrate();
+		if (isVibration) {
+			if (Time.time >= lastVibeTime + vibrationCooldown) {
+				lastVibeTime = Time.time;
+				Vibration.VibratePeek();
+				Debug.Log("VIBE");
+			}
+		}
+
 	}
 }

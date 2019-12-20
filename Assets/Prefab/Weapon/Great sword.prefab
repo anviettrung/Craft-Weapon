@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 8077740179489999573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30, y: 0, z: 0}
-  m_LocalScale: {x: 17.6187, y: 22.4238, z: 0.80085}
+  m_LocalScale: {x: 16.5, y: 24.486956, z: 0.94548297}
   m_Children:
   - {fileID: 3621229583154990207}
   m_Father: {fileID: 0}
@@ -82,6 +82,7 @@ MonoBehaviour:
   drawBoxUpperLeft: {x: 0, y: 0}
   drawBoxResize: {x: 0, y: 0}
   isSaving: 0
+  isFillAnything: 0
 --- !u!114 &8077740179489999535
 MonoBehaviour:
   m_ObjectHideFlags: 0

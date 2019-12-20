@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticleController : MonoBehaviour
 {
-	public ParticleSystem[] particleSystem;
+	public new ParticleSystem[] particleSystem;
 
 	public void PlayParticleEffect()
 	{

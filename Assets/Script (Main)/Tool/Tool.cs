@@ -64,8 +64,10 @@ public class Tool : MonoBehaviour
 	public virtual void SetEffectActive(bool isEnable)
 	{
 		if (!isAnimating) {
+
 			if (isEnable) {
 				particleController.PlayParticleEffect();
+				PlayerInput.Instance.Vibrate();
 			} else {
 				particleController.StopParticleEffect();
 			}

@@ -124,7 +124,7 @@ public class DrawOnTexture : MonoBehaviour
 		isFillAnything = false;
 		for (int i = 0; i < curTexViewport.Length; i++) {
 			colors[i] = brushPixels[i] + curTexViewport[i];
-			if (curTexViewport[i].a < 1)
+			if (curTexViewport[i].a < 1 && brushPixels[i].a > 0)
 				isFillAnything = true;
 		}
 
