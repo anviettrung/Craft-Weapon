@@ -49,8 +49,9 @@ public class ShopItemCell : MonoBehaviour
 		UpdateUI(
 			GetCellType(trackData.isUnlock, trackData.isFinished),
 			trackData.weapons.weaponName,
-			trackData.weapons.weaponIcon,
-			trackData.weapons.unlockCoins
+			trackData.weapons.unlockCoins,
+			trackData.weapons.weaponUnfinishIcon,
+			trackData.weapons.weaponFinishedIcon
 		);
 	}
 
@@ -60,7 +61,7 @@ public class ShopItemCell : MonoBehaviour
 		UpdateUI();
 	}
 
-	public void UpdateUI(CellType cellType, string weaponName, Sprite weaponIcon, int coins)
+	public void UpdateUI(CellType cellType, string weaponName, int coins, Sprite weaponUnfinishIcon, Sprite weaponFinishedIcon)
 	{
 		lockCell.gameObject.SetActive(false);
 		finishedCell.gameObject.SetActive(false);
@@ -71,12 +72,18 @@ public class ShopItemCell : MonoBehaviour
 			coinLabel.text = Mathf.Clamp(coins, 0, 9999).ToString();
 
 
-		} else if (cellType == CellType.FINISHED || cellType == CellType.UNFINISH) {
+		} else if (cellType == CellType.FINISHED) {
 
 			finishedCell.gameObject.SetActive(true);
-			weaponImage.sprite = weaponIcon;
+			weaponImage.sprite = weaponFinishedIcon;
+
+		} else if (cellType == CellType.UNFINISH) {
+
+			finishedCell.gameObject.SetActive(true);
+			weaponImage.sprite = weaponUnfinishIcon;
 
 		}
+
 
 		nameLabel.text = weaponName;
 	}

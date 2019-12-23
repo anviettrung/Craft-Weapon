@@ -31,7 +31,6 @@ public class InputTouchTrail : Singleton<InputTouchTrail>
 	public void Update()
 	{
 		if (!(Input.touchCount > 0)) {
-			Debug.Log("No touch found");
 			isTouching = false;
 			return;
 		}
@@ -39,8 +38,7 @@ public class InputTouchTrail : Singleton<InputTouchTrail>
 		Touch touch = Input.GetTouch(0);
 
 		if (isTouching == false) {
-
-			Debug.Log("Setting new finger id: " + touch.fingerId);
+		
 			curFingerId = touch.fingerId;
 			lastPosition = touch.position;
 			deltaPosition = Vector2.zero;
@@ -52,13 +50,11 @@ public class InputTouchTrail : Singleton<InputTouchTrail>
 
 		if (touch.fingerId == curFingerId) {
 
-			Debug.Log("Cal delta position");
 			deltaPosition = touch.deltaPosition;
 			lastPosition = touch.position;
 
 		} else {
-
-			Debug.Log("Lost that touch");
+		
 			isTouching = false;
 		}
 	}

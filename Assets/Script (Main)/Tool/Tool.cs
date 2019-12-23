@@ -5,10 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleController))]
 public class Tool : MonoBehaviour
 {
+	public enum VibeType
+	{
+		Pop, Peek, Nope
+	}
+
 	public string toolName;
 
 	public Transform initTransform;
 	public Vector3 affectAreaToToolOffset;
+	public VibeType vibeType;
+	public float vibeCooldown;
 
 	public bool hasRestrictiveBound;
 

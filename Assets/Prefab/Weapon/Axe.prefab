@@ -53,7 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Guitar Axe
-  weaponIcon: {fileID: 21300000, guid: 313aea0afd4b745c8bcdeac7922115d5, type: 3}
+  weaponUnfinishIcon: {fileID: 21300000, guid: ca60a441e4cef460c8216b0a98b1e350, type: 3}
+  weaponFinishedIcon: {fileID: 21300000, guid: fa4d0be12a8a34c8994f208436299252, type: 3}
   unlockCoins: 0
   rewardCoins: 50
   crafter: {fileID: 0}
