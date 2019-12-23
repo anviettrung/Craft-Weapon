@@ -51,17 +51,17 @@ public class PlayerInput : Singleton<PlayerInput>
 			if (Time.time >= lastVibeTime + tool.vibeCooldown) {
 				lastVibeTime = Time.time;
 
-				//switch (tool.vibeType) {
-				//	case Tool.VibeType.Pop:
-				//		Vibration.VibratePop();
-				//		break;
-				//	case Tool.VibeType.Peek:
-				//		Vibration.VibratePeek();
-				//		break;
-				//	case Tool.VibeType.Nope:
-				//		Vibration.VibrateNope();
-				//		break;
-				//}
+				switch (tool.vibeType) {
+					case Tool.VibeType.Pop:
+						Vibration.VibratePop();
+						break;
+					case Tool.VibeType.Peek:
+						Vibration.VibratePeek();
+						break;
+					case Tool.VibeType.Nope:
+						Vibration.VibrateNope();
+						break;
+				}
 			}
 		}
 

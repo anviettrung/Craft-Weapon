@@ -4896,7 +4896,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolName: Jigsaw
   initTransform: {fileID: 0}
-  affectAreaToToolOffset: {x: -50, y: 50, z: 0}
+  affectAreaToToolOffset: {x: -50, y: 40, z: 0}
+  vibeType: 2
+  vibeCooldown: 0.1
   hasRestrictiveBound: 1
   particleController: {fileID: 0}
   anim: {fileID: 96978713}
