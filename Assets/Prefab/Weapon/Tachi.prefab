@@ -57,7 +57,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Tachi
-  weaponIcon: {fileID: 21300000, guid: fc02008c1dc0c4269be04de4b53f1354, type: 3}
+  weaponUnfinishIcon: {fileID: 21300000, guid: 63df81c5b3eca48c0a47e40a5c0d64e0, type: 3}
+  weaponFinishedIcon: {fileID: 21300000, guid: a9282cba21bf7458d8c94a570701ecf8, type: 3}
   unlockCoins: 0
   rewardCoins: 120
   crafter: {fileID: 0}

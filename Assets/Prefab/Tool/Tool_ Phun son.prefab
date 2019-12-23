@@ -9636,6 +9636,8 @@ MonoBehaviour:
   toolName: Spray
   initTransform: {fileID: 0}
   affectAreaToToolOffset: {x: -160, y: 180, z: 0}
+  vibeType: 1
+  vibeCooldown: 0.2
   hasRestrictiveBound: 1
   particleController: {fileID: 7440044354163253979}
   anim: {fileID: 1470540115}
@@ -9692,7 +9694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7440044354478909066
 Transform:
   m_ObjectHideFlags: 0

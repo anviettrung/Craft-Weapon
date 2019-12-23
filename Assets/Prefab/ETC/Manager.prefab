@@ -53,7 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSceneName: 
   gameplaySceneName: 
-  crafter: {fileID: 0}
+  splashScreen: {fileID: 0}
+  splashScreenTime: 3
 --- !u!114 &6163679869650262183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crafter: {fileID: 0}
   sensity: 0.01
+  vibrationCooldown: 1
   isVibration: 1
 --- !u!114 &152844392
 MonoBehaviour:

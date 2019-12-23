@@ -6,7 +6,8 @@ public class GameManager : Singleton<GameManager>
 {
 	public string curSceneName;
 	public string gameplaySceneName;
-	public Crafter crafter;
+	public GameObject splashScreen;
+	public float splashScreenTime;
 
 	public void Awake()
 	{
@@ -17,21 +18,36 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
-		OnPreload();
+		StartCoroutine(OnPreload());
 	}
 
-	public void OnPreload()
+	public IEnumerator OnPreload()
 	{
 		//ChangeScene(gameplaySceneName);
 
 		// ------------------------------------------------
 		// Load Game
 		// ------------------------------------------------
-		// LevelManager.Instance.LoadGameData();
-		// UserManager.Instance.LoadGameData();
+		//LevelManager.Instance.LoadGameData();
+		//UserManager.Instance.LoadGameData();
 		// ------------------------------------------------
 
+		UIManager.Instance.mainCanvas.gameObject.SetActive(false);
+
+		yield return StartCoroutine(SplashScreen(splashScreenTime));
+
+		UIManager.Instance.mainCanvas.gameObject.SetActive(true);
+
 		LevelManager.Instance.OpenLastestLevel();
+	}
+
+	public IEnumerator SplashScreen(float t)
+	{
+		splashScreen.SetActive(true);
+		yield return new WaitForSecondsRealtime(t);
+		splashScreen.GetComponent<Animator>().SetTrigger("fade out");
+		yield return new WaitForSecondsRealtime(1.0f);
+		splashScreen.SetActive(false);
 	}
 
 	public void ChangeScene(int x)

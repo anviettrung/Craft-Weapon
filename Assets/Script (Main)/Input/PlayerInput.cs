@@ -44,10 +44,24 @@ public class PlayerInput : Singleton<PlayerInput>
 	public void Vibrate()
 	{
 		if (isVibration) {
-			if (Time.time >= lastVibeTime + vibrationCooldown) {
+			Tool tool = ToolManager.Instance.GetActiveTool();
+			if (tool == null)
+				return;
+
+			if (Time.time >= lastVibeTime + tool.vibeCooldown) {
 				lastVibeTime = Time.time;
-				Vibration.VibratePeek();
-				Debug.Log("VIBE");
+
+				switch (tool.vibeType) {
+					case Tool.VibeType.Pop:
+						Vibration.VibratePop();
+						break;
+					case Tool.VibeType.Peek:
+						Vibration.VibratePeek();
+						break;
+					case Tool.VibeType.Nope:
+						Vibration.VibrateNope();
+						break;
+				}
 			}
 		}
 
