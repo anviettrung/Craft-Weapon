@@ -75,7 +75,7 @@ MonoBehaviour:
       type: 3}
     isUnlock: 0
     isFinished: 0
-  - weapons: {fileID: 8077740179489999572, guid: fdff2388b65ef4e8380977e6d5b66030,
+  - weapons: {fileID: 8077740179489999572, guid: b07a56cceb7274d87be01b281bcd7c14,
       type: 3}
     isUnlock: 0
     isFinished: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crafter: {fileID: 0}
   sensity: 0.01
+  vibrationCooldown: 1
   isVibration: 1
 --- !u!114 &152844392
 MonoBehaviour:

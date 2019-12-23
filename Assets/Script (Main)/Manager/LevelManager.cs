@@ -82,6 +82,8 @@ public class LevelManager : Singleton<LevelManager>
 		currentWeapon.onFinishedWeapon.AddListener(FinishLevel);
 
 		PlayerInput.Instance.crafter = currentWeapon.crafter;
+
+		UnlockLevel();
 	}
 
 	public void UnlockLevel()
@@ -144,7 +146,8 @@ public class LevelManager : Singleton<LevelManager>
 
 		foreach (LevelData data in levelDatas) {
 
-			Debug.Log(data);
+			if (data.weapons == null)
+				continue;
 			Debug.Log(data.weapons);
 			save.weaponNames.Add(data.weapons.weaponName);
 			save.isUnlock.Add(data.isUnlock);
