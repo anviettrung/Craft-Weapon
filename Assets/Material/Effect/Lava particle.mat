@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Particle1Mat
+  m_Name: Lava particle
   m_Shader: {fileID: 4800000, guid: 653c9a285e58248b093b8a353a734f2c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b867873ea092d4e10bed2a3180642d32, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5e658ddf7ca4342988ae2dffb31f55fa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

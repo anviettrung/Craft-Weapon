@@ -53,7 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSceneName: 
   gameplaySceneName: 
-  crafter: {fileID: 0}
+  splashScreen: {fileID: 0}
+  splashScreenTime: 3
 --- !u!114 &6163679869650262183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ MonoBehaviour:
       type: 3}
     isUnlock: 0
     isFinished: 0
-  - weapons: {fileID: 8077740179489999572, guid: b07a56cceb7274d87be01b281bcd7c14,
+  - weapons: {fileID: 8077740179489999572, guid: fdff2388b65ef4e8380977e6d5b66030,
       type: 3}
     isUnlock: 0
     isFinished: 0
