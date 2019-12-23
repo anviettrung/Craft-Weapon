@@ -14,7 +14,7 @@ public class CameraFitArea : MonoBehaviour
 			verticalFit();
 		} else if (isHorizontalFit) {
 			horizontalFit();
-		}
+		} 
 
 		AlignVerticalMiddle();
 	}
