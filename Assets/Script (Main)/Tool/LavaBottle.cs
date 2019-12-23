@@ -5,6 +5,7 @@ using UnityEngine;
 public class LavaBottle : Tool
 {
 	public GameObject lavaStream;
+	public Animator bottleAnim;
 
 	public void OnDisable()
 	{
@@ -13,8 +14,8 @@ public class LavaBottle : Tool
 
 	public void DisableLavaStream()
 	{
-		lavaStream.SetActive(false);
-
+		//lavaStream.SetActive(false);
+		bottleAnim.SetBool("IsPouring", false);
 	}
 
 
@@ -23,9 +24,11 @@ public class LavaBottle : Tool
 		base.SetEffectActive(isEnable);
 
 		if (isEnable) {
-			lavaStream.SetActive(true);
+			//lavaStream.SetActive(true);
+			bottleAnim.SetBool("IsPouring", true);
 		} else {
-			lavaStream.SetActive(false);
+			//lavaStream.SetActive(false);
+			bottleAnim.SetBool("IsPouring", false);
 		}
 	}
 }

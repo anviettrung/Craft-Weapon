@@ -27,8 +27,8 @@ public class GameManager : Singleton<GameManager>
 		// ------------------------------------------------
 		// Load Game
 		// ------------------------------------------------
-		 LevelManager.Instance.LoadGameData();
-		 UserManager.Instance.LoadGameData();
+		 //LevelManager.Instance.LoadGameData();
+		 //UserManager.Instance.LoadGameData();
 		// ------------------------------------------------
 
 		LevelManager.Instance.OpenLastestLevel();
